@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>バンソウズ合同会社｜通販運営代行・経営支援・業務改善</title>
-  <meta name="description" content="通販の運営、経営の整理、業務の効率化。「実務ごと引き受ける」伴走型の支援を行います。楽天・Amazon・自社EC対応。全国リモート対応。">
-  <meta property="og:title" content="バンソウズ合同会社｜通販運営代行・経営支援・業務改善">
-  <meta property="og:description" content="通販の運営、経営の整理、業務の効率化。「実務ごと引き受ける」伴走型の支援を行います。">
+  <title>バンソウズ合同会社｜通販運営代行・経営支援・AI業務効率化</title>
+  <meta name="description" content="地域に選択肢をつくる。通販の運営代行・経営支援・AI業務効率化。実務まで引き受ける伴走型支援で、地方の中小企業の成長を支えます。島根県を中心に全国対応。">
+  <meta property="og:title" content="バンソウズ合同会社｜地域に選択肢をつくる">
+  <meta property="og:description" content="通販の運営代行・経営支援・AI業務効率化。実務まで引き受ける伴走型支援で、地方の中小企業の成長を支えます。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bansos.co.jp/">
   <meta property="og:image" content="https://bansos.co.jp/images/ogp.png">
@@ -24,24 +24,31 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
 <!-- ========== HEADER ========== -->
 <header id="site-header">
   <div class="container header-inner">
-    <a href="#" class="logo" aria-label="バンソウズ合同会社 トップへ">
-      <img src="images/logo.png" alt="バンソウズ合同会社">
+    <a href="/" class="logo" aria-label="バンソウズ合同会社 トップへ">
+      <img src="/images/logo.png" alt="バンソウズ合同会社">
     </a>
     <nav id="site-nav" aria-label="メインナビゲーション">
       <ul>
-        <li><a href="#services">サービス</a></li>
-        <li><a href="#cases">実績</a></li>
-        <li><a href="#pricing">料金</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact" class="nav-cta">無料相談</a></li>
+        <li class="has-dropdown">
+          <a href="/services/">サービス</a>
+          <ul class="dropdown">
+            <li><a href="/services/ecommerce-operation/">通販の運営代行</a></li>
+            <li><a href="/services/management-support/">経営支援</a></li>
+            <li><a href="/services/ai-efficiency/">AI業務効率化</a></li>
+          </ul>
+        </li>
+        <li><a href="/works/">実績</a></li>
+        <li><a href="/faq/">よくある質問</a></li>
+        <li><a href="/company/">会社概要</a></li>
+        <li><a href="/contact/" class="nav-cta">無料相談する</a></li>
       </ul>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav">
@@ -58,21 +65,29 @@
 <section id="hero">
   <div class="container hero-inner">
     <div class="hero-text">
-      <p class="hero-eyebrow">ECと経営の伴走者</p>
-      <h1>「できない」を<br>「できる」に。</h1>
+      <p class="hero-eyebrow">島根県発・全国対応の伴走型支援</p>
+      <h1>地域に、<br>選択肢をつくる。</h1>
       <p class="hero-lead">
         通販の運営、経営の整理、業務の効率化。<br>
         単なるアドバイスではなく、考え、整理し、必要なら手を動かす。<br>
-        経営者の右腕として、成果が出るまで一緒に走ります。
+        地方の中小企業が「やりたいこと」を実行できる環境を、一緒に作ります。
       </p>
       <div class="hero-cta-group">
-        <a href="#contact" class="btn btn-primary">無料相談する</a>
-        <a href="#services" class="btn btn-outline">サービスを見る</a>
+        <a href="/contact/" class="btn btn-primary">無料相談する</a>
+        <a href="/services/" class="btn btn-outline">サービスを見る</a>
       </div>
     </div>
     <div class="hero-image">
-      <img src="images/representative.jpg" alt="バンソウズ代表">
+      <img src="/images/representative.jpg" alt="バンソウズ代表">
     </div>
+  </div>
+</section>
+
+<!-- ========== MISSION ========== -->
+<section class="mission-band" aria-label="ミッション">
+  <div class="container">
+    <p class="mission-ja">地域に、選択肢をつくる。</p>
+    <p class="mission-sub">Creating Options for the Region</p>
   </div>
 </section>
 
@@ -105,172 +120,36 @@
       <p>「実務ごと引き受ける」伴走型の支援。<br>経営者の右腕として、成果が出るまで一緒に走ります。</p>
     </div>
     <div class="services-grid">
-      <a href="#ec" class="service-card">
-        <div class="service-num">01</div>
-        <h3>通販運営代行</h3>
+      <a href="/services/ecommerce-operation/" class="service-card">
+        <div class="service-num">01 — 最重点支援</div>
+        <h3>通販の運営代行</h3>
         <p>楽天・Amazon・自社ECまで、戦略設計から日々の運用まで一貫サポート。リピート施策を軸に、6ヶ月以内に前年比130%以上を目指します。</p>
         <span class="read-more">詳しく見る →</span>
       </a>
-      <a href="#management" class="service-card">
+      <a href="/services/management-support/" class="service-card">
         <div class="service-num">02</div>
         <h3>経営支援</h3>
         <p>経営者の右腕として、数字の見える化・意思決定の整理・実務の引き取りを行います。「アドバイスだけ」では終わりません。</p>
         <span class="read-more">詳しく見る →</span>
       </a>
-      <a href="#improvement" class="service-card">
+      <a href="/services/ai-efficiency/" class="service-card">
         <div class="service-num">03</div>
-        <h3>業務改善支援</h3>
-        <p>GAS・RPA・AI活用による自動化で、「やらなくていい仕事」を減らし、仕組みで回る状態を作ります。</p>
+        <h3>AI業務効率化</h3>
+        <p>AI・GAS・RPAによる自動化で、「やらなくていい仕事」を減らし、仕組みで回る状態を作ります。</p>
         <span class="read-more">詳しく見る →</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ========== EC SERVICE DETAIL ========== -->
-<section id="ec" class="service-detail bg-light">
+<!-- ========== EC HIGHLIGHT ========== -->
+<section class="highlight-band">
   <div class="container">
-    <div class="service-detail-head">
-      <span class="service-label">Service 01</span>
-      <h2>通販運営代行</h2>
-      <p class="service-tagline">EC売上が頭打ちなら、運営ごと引き受けます</p>
-    </div>
-    <div class="service-detail-body">
-      <div class="service-description">
-        <p>一般的なコンサルは、「何をすべきか」を教えて終わりです。</p>
-        <p>バンソウズの通販運営代行は、<strong>「やるべきことを、実際にやる」</strong>ことまでを含みます。年間販売計画の設計からメルマガ配信・広告運用・ページ改善まで、担当者の代わりに手を動かし、成果が出るまで伴走し続けます。</p>
-        <div class="service-kpi">
-          <strong>目標：支援開始から6ヶ月以内に前年同月比130%以上の売上成長</strong>
-        </div>
-      </div>
-      <div class="service-items-wrap">
-        <h3>支援内容</h3>
-        <ul class="service-items">
-          <li>
-            <strong>年間販売計画の設計</strong>
-            <span>月次の売上目標・施策カレンダーを設計し、場当たり的な運営から脱却</span>
-          </li>
-          <li>
-            <strong>メルマガ・LINE配信の設計と代行</strong>
-            <span>リピート施策の核となる配信を一貫代行。原稿作成から配信・効果測定まで</span>
-          </li>
-          <li>
-            <strong>商品ページ・LPの構成改善</strong>
-            <span>楽天・Amazon・自社ECの商品ページを、購買につながる構成に改善</span>
-          </li>
-          <li>
-            <strong>広告運用</strong>
-            <span>楽天広告・Amazonスポンサープロダクト・SNS広告の設定・運用・改善を代行</span>
-          </li>
-          <li>
-            <strong>数字の見える化・レポート整備</strong>
-            <span>売上・アクセス・CVRなどを一覧できるレポートを毎月共有</span>
-          </li>
-          <li>
-            <strong>社内担当者の育成・ノウハウ移管</strong>
-            <span>将来的に自社で運営できる体制を作ることも支援。仕組みと判断基準を社内に残す</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="service-target">
-      <h3>こんな方が対象です</h3>
-      <ul>
-        <li>年商1,000万〜3億円程度の通販事業者</li>
-        <li>楽天・Amazon・自社ECを運営しているが、売上が伸び悩んでいる</li>
-        <li>社内にEC専任担当がおらず、実行体制が不足している</li>
-        <li>長期前提で成果を積み上げていきたい</li>
-      </ul>
-    </div>
-    <div class="section-cta">
-      <a href="#contact" class="btn btn-primary">通販運営代行について相談する</a>
-    </div>
-  </div>
-</section>
-
-<!-- ========== MANAGEMENT SERVICE DETAIL ========== -->
-<section id="management" class="service-detail">
-  <div class="container">
-    <div class="service-detail-head">
-      <span class="service-label">Service 02</span>
-      <h2>経営支援</h2>
-      <p class="service-tagline">経営者の右腕として、判断しやすい状態を作ります</p>
-    </div>
-    <div class="service-detail-body">
-      <div class="service-description">
-        <p>経営支援は、アドバイスをする仕事ではありません。</p>
-        <p><strong>経営者の右腕として、考え、整理し、判断しやすい状態を作る仕事です。</strong></p>
-        <p>数字の見える化、意思決定の整理、業務の引き取り。通販運営の現場から自然に発生する実務型の経営支援を行います。経営者が本来やるべき仕事に集中できる環境を整えます。</p>
-      </div>
-      <div class="service-items-wrap">
-        <h3>支援内容</h3>
-        <ul class="service-items">
-          <li>
-            <strong>数字の見える化・レポート整備</strong>
-            <span>経営判断に必要な数字を整理・可視化し、毎月報告</span>
-          </li>
-          <li>
-            <strong>業務フローの整理</strong>
-            <span>「誰が何をやっているか」を整理し、属人化を解消</span>
-          </li>
-          <li>
-            <strong>意思決定の整理・壁打ち</strong>
-            <span>経営者の考えを整理し、判断の精度を高めるサポート</span>
-          </li>
-          <li>
-            <strong>不要な仕事の削減</strong>
-            <span>やめていい業務を洗い出し、リソースを本質的な仕事に集中させる</span>
-          </li>
-          <li>
-            <strong>実務の一部引き取り</strong>
-            <span>経営者が抱えている実務を引き取り、本来の仕事に集中できる環境を作る</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-cta">
-      <a href="#contact" class="btn btn-primary">経営支援について相談する</a>
-    </div>
-  </div>
-</section>
-
-<!-- ========== IMPROVEMENT SERVICE DETAIL ========== -->
-<section id="improvement" class="service-detail bg-light">
-  <div class="container">
-    <div class="service-detail-head">
-      <span class="service-label">Service 03</span>
-      <h2>業務改善支援</h2>
-      <p class="service-tagline">「やらなくていい仕事」を減らし、仕組みで回す状態を作ります</p>
-    </div>
-    <div class="service-detail-body">
-      <div class="service-description">
-        <p>業務効率化・IT活用・AI活用を専門とした支援です。</p>
-        <p>GAS・RPA・AIによる自動化で、毎日の繰り返し作業を仕組み化。スタッフが本来の仕事に集中できる環境を整えます。通販運営や経営支援の中から自然に発生することも多く、単独での依頼も受け付けています。</p>
-      </div>
-      <div class="service-items-wrap">
-        <h3>支援内容</h3>
-        <ul class="service-items">
-          <li>
-            <strong>GAS・RPA・AIによる自動化</strong>
-            <span>手作業で行っている繰り返し業務をツールで自動化し、ミスとコストを削減</span>
-          </li>
-          <li>
-            <strong>ツール導入と運用設計</strong>
-            <span>業務に合ったツールを選定・導入し、継続して使える運用ルールを設計</span>
-          </li>
-          <li>
-            <strong>業務フローの整理と改善</strong>
-            <span>現状の業務を可視化し、ムダ・ムラ・ムリを取り除く</span>
-          </li>
-          <li>
-            <strong>AI活用の導入支援</strong>
-            <span>ChatGPTなどのAIツールを実務に組み込む方法を設計・実装</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-cta">
-      <a href="#contact" class="btn btn-primary">業務改善支援について相談する</a>
+    <h2>通販を伸ばしたいが、社内で回らない。</h2>
+    <p>「担当者がいない」「何をすればいいかわからない」「外注したけど成果が出ない」<br>そんな通販事業者の課題を、実務ごと引き受けて解決します。</p>
+    <div class="hero-cta-group" style="justify-content:center">
+      <a href="/services/ecommerce-operation/" class="btn btn-primary">通販運営代行を見る</a>
+      <a href="/contact/" class="btn btn-outline">まず相談してみる</a>
     </div>
   </div>
 </section>
@@ -285,7 +164,7 @@
     <div class="cases-grid">
       <div class="case-card">
         <span class="case-tag">食品・旅館 EC</span>
-        <h3>有限会社 湯宿温泉堂 様</h3>
+        <h3>有限会社 湯宿温泉堂 様<br><small style="font-weight:400;font-size:14px">（※社名は仮称。実名は掲載許可取得後に更新）</small></h3>
         <div class="case-result">
           <span class="result-num">約5倍</span>
           <span class="result-label">の売上成長</span>
@@ -300,7 +179,7 @@
       </div>
       <div class="case-card">
         <span class="case-tag">食品・フルーツ EC</span>
-        <h3>株式会社 果物園やまもと 様</h3>
+        <h3>株式会社 果物園やまもと 様<br><small style="font-weight:400;font-size:14px">（※社名は仮称。実名は掲載許可取得後に更新）</small></h3>
         <div class="case-result">
           <span class="result-num">約10倍</span>
           <span class="result-label">の売上成長</span>
@@ -313,19 +192,9 @@
         </ul>
       </div>
     </div>
-
-    <!-- お客様の声 ─ コメント収集後にここを有効化 -->
-    <!--
-    <div class="testimonials">
-      <h3>お客様の声</h3>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <blockquote>...</blockquote>
-          <cite>会社名 役職 お名前</cite>
-        </div>
-      </div>
+    <div class="section-cta" style="margin-top:40px">
+      <a href="/works/" class="btn btn-outline">実績一覧を見る</a>
     </div>
-    -->
   </div>
 </section>
 
@@ -348,134 +217,37 @@
       </div>
       <div class="reason-card">
         <div class="reason-num">03</div>
-        <h3>EC・業務効率化・AIを横断して見られる</h3>
+        <h3>EC・経営・AIを横断して見られる</h3>
         <p>通販運営だけでなく、経営の数字整理、業務の自動化まで対応。複数の専門家に頼まなくても、一箇所で相談できます。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== PRICING ========== -->
-<section id="pricing">
+<!-- ========== COMPANY SUMMARY ========== -->
+<section id="company-summary">
   <div class="container">
-    <div class="section-header">
-      <h2>料金プラン</h2>
-      <p>長期前提のサブスクリプション型。スポットや短期のご依頼はお断りしています。</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="pricing-service">通販運営代行</div>
-        <div class="pricing-price">15<span>万円〜/月</span></div>
-        <p class="pricing-note">支援内容・稼働時間により変動します</p>
-        <ul class="pricing-items">
-          <li>年間販売計画の設計・管理</li>
-          <li>メルマガ・LINE・広告の代行</li>
-          <li>商品ページ・LP改善</li>
-          <li>月次レポート・定期MTG</li>
-          <li>チャット相談（平日）</li>
-        </ul>
+    <div class="company-summary-grid">
+      <div class="company-summary-text">
+        <h2>バンソウズについて</h2>
+        <p>島根県を拠点に、地方の中小企業が「やりたいこと」を実行できる環境を作るための伴走支援を行っています。通販の運営代行を中核に、経営支援・AI業務効率化を組み合わせた総合的なサポートが強みです。</p>
+        <p>アドバイスだけで終わらず、必要なら手を動かす。それが私たちの流儀です。</p>
+        <a href="/company/" class="btn btn-outline" style="margin-top:8px">会社概要を見る</a>
       </div>
-      <div class="pricing-card">
-        <div class="pricing-service">経営支援</div>
-        <div class="pricing-price">5<span>万円〜/月</span></div>
-        <p class="pricing-note">既存クライアント優先。別枠として切り出し対応</p>
-        <ul class="pricing-items">
-          <li>数字の見える化・レポート整備</li>
-          <li>業務フローの整理</li>
-          <li>意思決定の整理・壁打ち</li>
-          <li>実務の一部引き取り</li>
-        </ul>
+      <div class="company-summary-table">
+        <table>
+          <tr><th>会社名</th><td>バンソウズ合同会社</td></tr>
+          <tr><th>所在地</th><td>島根県（詳細はお問い合わせください）</td></tr>
+          <tr><th>事業内容</th><td>通販運営代行 / 経営支援 / AI業務効率化</td></tr>
+          <tr><th>対応エリア</th><td>全国（リモート対応）</td></tr>
+        </table>
       </div>
-      <div class="pricing-card">
-        <div class="pricing-service">業務改善支援</div>
-        <div class="pricing-price">要<span>相談</span></div>
-        <p class="pricing-note">内容・規模によりお見積もりします</p>
-        <ul class="pricing-items">
-          <li>業務フロー分析・改善提案</li>
-          <li>GAS・RPA・AI自動化の実装</li>
-          <li>ツール導入と運用設計</li>
-          <li>継続サポート</li>
-        </ul>
-      </div>
-    </div>
-    <p class="pricing-disclaimer">※ まずは現状をお聞きし、ご状況に合わせてご提案します。</p>
-  </div>
-</section>
-
-<!-- ========== FAQ ========== -->
-<section id="faq" class="bg-light">
-  <div class="container">
-    <div class="section-header">
-      <h2>よくあるご質問</h2>
-    </div>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>どんな業種・モールに対応していますか？</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" hidden>
-          <p>食品・化粧品・雑貨など消費財を中心に、楽天市場・Amazon・Yahoo!ショッピング・自社ECに対応しています。主力モールや業種に合わせた支援が可能です。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>月商が少なくても依頼できますか？</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" hidden>
-          <p>月商数十万円の段階から支援してきた実績が多数あります。現在の売上規模より「成長意欲があるか・長期前提で取り組めるか」を重視しています。年商1,000万〜3億円程度の通販事業者が中心ですが、まずはご相談ください。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>どこまで代行してもらえますか？</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" hidden>
-          <p>受発注以外のEC業務はほぼすべて対応可能です。戦略設計・年間計画・メルマガ配信・広告運用・商品ページ制作・数字管理・レポート整備・担当者育成まで含みます。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>遠方からの依頼でも大丈夫ですか？</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" hidden>
-          <p>全国対応しています。基本的にリモート（オンラインMTG・チャット）での支援です。必要に応じて現地訪問にも対応します。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>成果はどのくらいで出ますか？</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" hidden>
-          <p>目安として、支援開始から6ヶ月以内に前年同月比130%以上の売上成長を目標としています。ただし、支援内容・商材・初期状態によって異なります。まず現状をお聞きした上で、現実的な見立てをお伝えします。</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>最低契約期間はありますか？</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-answer" hidden>
-          <p>継続的な伴走型支援を基本としているため、短期改善のみのご依頼はお断りしています。成果を出すために必要な期間（目安6ヶ月〜）を前提にご検討ください。</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- ========== CONTACT ========== -->
-<section id="contact">
+<!-- ========== CONTACT CTA ========== -->
+<section id="contact" class="bg-light">
   <div class="container">
     <div class="section-header">
       <h2>まずは、お気軽にご相談ください</h2>
@@ -485,21 +257,8 @@
         無理な営業はしません。30分で持ち帰れる話をします。
       </p>
     </div>
-    <div class="contact-form-wrap">
-      <!--
-        TODO: Google フォームの埋め込みURLに置き換えてください
-        Google フォーム → 送信 → 「<>」タブ → 埋め込みHTMLのsrc URLをコピー
-      -->
-      <iframe
-        src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
-        width="100%"
-        height="900"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        title="お問い合わせフォーム"
-        loading="lazy"
-      >読み込んでいます…</iframe>
+    <div class="section-cta">
+      <a href="/contact/" class="btn btn-primary" style="font-size:18px;padding:18px 48px">無料相談・お問い合わせ</a>
     </div>
   </div>
 </section>
@@ -510,31 +269,44 @@
 <footer id="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <a href="#" aria-label="バンソウズ合同会社 トップへ">
-        <img src="images/logo.png" alt="バンソウズ合同会社" class="footer-logo">
+      <a href="/" aria-label="バンソウズ合同会社 トップへ">
+        <img src="/images/logo.png" alt="バンソウズ合同会社" class="footer-logo">
       </a>
-      <p class="footer-tagline">通販の運営、経営の整理、業務の効率化。<br>「実務ごと引き受ける」伴走型の支援。</p>
+      <p class="footer-tagline">地域に、選択肢をつくる。<br>通販運営代行・経営支援・AI業務効率化</p>
     </div>
     <nav class="footer-nav" aria-label="フッターナビゲーション">
-      <ul>
-        <li><a href="#services">サービス</a></li>
-        <li><a href="#ec">通販運営代行</a></li>
-        <li><a href="#management">経営支援</a></li>
-        <li><a href="#improvement">業務改善支援</a></li>
-        <li><a href="#cases">実績</a></li>
-        <li><a href="#pricing">料金</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">お問い合わせ</a></li>
-      </ul>
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <h4>サービス</h4>
+          <ul>
+            <li><a href="/services/ecommerce-operation/">通販の運営代行</a></li>
+            <li><a href="/services/management-support/">経営支援</a></li>
+            <li><a href="/services/ai-efficiency/">AI業務効率化</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>サイト情報</h4>
+          <ul>
+            <li><a href="/works/">実績</a></li>
+            <li><a href="/faq/">よくある質問</a></li>
+            <li><a href="/company/">会社概要</a></li>
+            <li><a href="/contact/">お問い合わせ</a></li>
+            <li><a href="/privacy/">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </div>
   <div class="footer-bottom">
     <div class="container">
       <p>&copy; 2026 バンソウズ合同会社</p>
+      <div class="footer-copy-links">
+        <a href="/privacy/">プライバシーポリシー</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

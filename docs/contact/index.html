@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ｜バンソウズ合同会社</title>
+  <meta name="description" content="バンソウズへのお問い合わせ・無料相談はこちら。通販運営代行・経営支援・AI業務効率化に関するご相談をお待ちしています。">
+  <meta property="og:title" content="お問い合わせ｜バンソウズ合同会社">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bansos.co.jp/contact/">
+  <meta property="og:image" content="https://bansos.co.jp/images/ogp.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="バンソウズ合同会社 トップへ">
+      <img src="/images/logo.png" alt="バンソウズ合同会社">
+    </a>
+    <nav id="site-nav" aria-label="メインナビゲーション">
+      <ul>
+        <li class="has-dropdown">
+          <a href="/services/">サービス</a>
+          <ul class="dropdown">
+            <li><a href="/services/ecommerce-operation/">通販の運営代行</a></li>
+            <li><a href="/services/management-support/">経営支援</a></li>
+            <li><a href="/services/ai-efficiency/">AI業務効率化</a></li>
+          </ul>
+        </li>
+        <li><a href="/works/">実績</a></li>
+        <li><a href="/faq/">よくある質問</a></li>
+        <li><a href="/company/">会社概要</a></li>
+        <li><a href="/contact/" class="nav-cta">無料相談する</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<div class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="/">トップ</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span>お問い合わせ</span>
+    </nav>
+    <span class="page-hero-eyebrow">CONTACT</span>
+    <h1>まずは、お気軽に<br>ご相談ください。</h1>
+    <p class="page-hero-lead">
+      「何から相談すればいいか分からない」でも大丈夫です。<br>
+      現状をお聞きして、必要な支援を一緒に整理します。<br>
+      無理な営業はしません。30分で持ち帰れる話をします。
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- FORM -->
+      <div>
+        <!--
+          ====================================================================
+          フォーム送信先の設定
+          以下のいずれかの方法で実装してください：
+
+          【方法1】Cloudflare Workers（推奨）
+            action="/api/contact" method="POST"
+            Cloudflare Workers を作成し、メール送信を実装
+
+          【方法2】Formspree
+            action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+            Formspree.io でフォームを作成し、IDを置き換える
+
+          【方法3】Google フォーム埋め込み
+            フォーム全体を Google フォームの iframe に置き換える
+          ====================================================================
+        -->
+        <form
+          id="contact-form"
+          action="/api/contact"
+          method="POST"
+          novalidate
+        >
+          <!-- 会社名 -->
+          <div class="form-group">
+            <label class="form-label" for="company">
+              会社名<span class="form-required">必須</span>
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="form-input"
+              placeholder="株式会社〇〇"
+              autocomplete="organization"
+            >
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <!-- お名前 -->
+          <div class="form-group">
+            <label class="form-label" for="name">
+              お名前<span class="form-required">必須</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-input"
+              placeholder="山田 太郎"
+              autocomplete="name"
+            >
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <!-- メールアドレス -->
+          <div class="form-group">
+            <label class="form-label" for="email">
+              メールアドレス<span class="form-required">必須</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="example@company.co.jp"
+              autocomplete="email"
+            >
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <!-- 電話番号 -->
+          <div class="form-group">
+            <label class="form-label" for="tel">
+              電話番号<span style="font-size:12px;color:var(--text-light);margin-left:6px">任意</span>
+            </label>
+            <input
+              type="tel"
+              id="tel"
+              name="tel"
+              class="form-input"
+              placeholder="090-0000-0000"
+              autocomplete="tel"
+            >
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <!-- お問い合わせ種別 -->
+          <div class="form-group">
+            <label class="form-label" for="category">
+              お問い合わせ種別<span class="form-required">必須</span>
+            </label>
+            <select id="category" name="category" class="form-select">
+              <option value="">選択してください</option>
+              <option value="ecommerce">通販の運営代行について</option>
+              <option value="management">経営支援について</option>
+              <option value="ai">AI業務効率化について</option>
+              <option value="multiple">複数のサービスについて</option>
+              <option value="other">その他</option>
+            </select>
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <!-- お問い合わせ内容 -->
+          <div class="form-group">
+            <label class="form-label" for="body">
+              お問い合わせ内容<span class="form-required">必須</span>
+            </label>
+            <textarea
+              id="body"
+              name="body"
+              class="form-textarea"
+              placeholder="現在の状況・課題・ご相談内容をお書きください。&#10;例：楽天市場で売上が伸び悩んでいます。担当者もおらず、何から手をつければいいかわかりません。"
+            ></textarea>
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <p class="form-note">
+            送信いただいた内容は、<a href="/privacy/" style="color:var(--green-800)">プライバシーポリシー</a>に基づき適切に管理します。
+          </p>
+
+          <div class="form-submit-wrap">
+            <button type="submit" class="btn btn-primary">送信する</button>
+          </div>
+        </form>
+
+        <!-- 送信完了メッセージ -->
+        <div id="form-success" class="form-success" role="status">
+          <p style="font-size:20px;font-weight:700;margin-bottom:12px">送信が完了しました。</p>
+          <p>お問い合わせいただきありがとうございます。<br>通常2営業日以内にご連絡いたします。</p>
+        </div>
+      </div>
+
+      <!-- ASIDE -->
+      <div class="contact-aside">
+        <div class="contact-info-card">
+          <h3>こんな方からのご相談を歓迎します</h3>
+          <p>
+            ・通販の売上を上げたいが何から始めればいいか<br>
+            ・EC担当者がおらず、困っている<br>
+            ・経営の数字が見えない<br>
+            ・業務を自動化したい<br>
+            ・相談だけしてみたい
+          </p>
+        </div>
+        <div class="contact-info-card">
+          <h3>対応について</h3>
+          <p>
+            <strong>返信目安：</strong>2営業日以内<br>
+            <strong>対応時間：</strong>平日 9:00〜18:00<br>
+            <strong>対応方法：</strong>メール・オンラインMTG<br>
+            <strong>対応エリア：</strong>全国（リモート対応）
+          </p>
+        </div>
+        <div class="contact-info-card">
+          <h3>無理な営業はしません</h3>
+          <p>まず現状をお聞きして、必要な支援を一緒に考えます。「今すぐ依頼するかどうか決めていない」でも歓迎です。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" aria-label="バンソウズ合同会社 トップへ">
+        <img src="/images/logo.png" alt="バンソウズ合同会社" class="footer-logo">
+      </a>
+      <p class="footer-tagline">地域に、選択肢をつくる。<br>通販運営代行・経営支援・AI業務効率化</p>
+    </div>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <h4>サービス</h4>
+          <ul>
+            <li><a href="/services/ecommerce-operation/">通販の運営代行</a></li>
+            <li><a href="/services/management-support/">経営支援</a></li>
+            <li><a href="/services/ai-efficiency/">AI業務効率化</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>サイト情報</h4>
+          <ul>
+            <li><a href="/works/">実績</a></li>
+            <li><a href="/faq/">よくある質問</a></li>
+            <li><a href="/company/">会社概要</a></li>
+            <li><a href="/contact/">お問い合わせ</a></li>
+            <li><a href="/privacy/">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 バンソウズ合同会社</p>
+      <div class="footer-copy-links"><a href="/privacy/">プライバシーポリシー</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
