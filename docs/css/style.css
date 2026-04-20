@@ -1208,3 +1208,12 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
   .company-table th, .company-table td { display: block; width: 100%; }
   .company-table th { border-bottom: none; padding-bottom: 4px; }
 }
+
+/* ---------- Hero sub-copy ---------- */
+.hero-sub {
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 700;
+  color: var(--green-800);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
