@@ -232,11 +232,14 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
   flex-wrap: wrap;
   gap: 14px;
 }
+.hero-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .hero-image img {
+  max-width: 300px;
   width: 100%;
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-  box-shadow: var(--shadow-lg);
 }
 
 /* ---------- Pain ---------- */
@@ -668,12 +671,15 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
   /* Hero */
   #hero { padding-top: calc(var(--header-h) + 40px); padding-bottom: 48px; }
   .hero-inner { grid-template-columns: 1fr; gap: 36px; }
-  .hero-image { order: -1; max-width: 280px; margin-inline: auto; }
-  .hero-image img { border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
+  .hero-image { order: -1; max-width: 200px; margin-inline: auto; }
   .hero-text { text-align: center; }
   .hero-eyebrow { margin-inline: auto; display: inline-block; }
   .hero-lead { margin-inline: auto; }
   .hero-cta-group { justify-content: center; }
+
+  /* Representative */
+  .rep-inner { grid-template-columns: 1fr; gap: 32px; }
+  .rep-photo { max-width: 240px; margin-inline: auto; }
 
   /* Pain */
   .pain-list { grid-template-columns: 1fr; }
@@ -1191,6 +1197,38 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
 .company-summary-table th { width: 100px; font-weight: 700; white-space: nowrap; color: var(--text); }
 .company-summary-table td { color: var(--text-mid); }
 
+/* ---------- Representative ---------- */
+.rep-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: start;
+  gap: 56px;
+}
+.rep-photo img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.rep-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.rep-title {
+  font-size: 14px;
+  color: var(--green-800);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.rep-bio {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.9;
+}
+
 /* ==========================================================================
    Responsive additions
    ========================================================================== */
@@ -1199,6 +1237,7 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .service-index-grid { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; }
+  .rep-inner { grid-template-columns: 220px 1fr; gap: 36px; }
   .company-summary-grid { grid-template-columns: 1fr; }
   .target-grid { grid-template-columns: 1fr; }
   .works-grid { grid-template-columns: 1fr; }
