@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  /* バンソウズブランドカラー */
+  --green-900: #14532d;
+  --green-800: #1a6035;
+  --green-700: #166534;
+  --green-600: #2d6a4f;
+  --green-100: #dcfce7;
+  --green-50:  #f0fdf4;
+
+  --orange:      #f59e0b;
+  --orange-dark: #d97706;
+
+  /* Figma design tokens (adapted) */
+  --color-dark:    #1a6035;   /* Figma #043873 → バンソウズ green */
+  --color-accent:  #4f9cf9;   /* Figma light blue — kept as contrast accent */
+  --color-cta-bg:  #f59e0b;   /* Figma #ffe492 → バンソウズ orange */
+  --color-image-bg: #c4defd;  /* Figma Primary/100 */
+
+  --text:       #1e293b;
+  --text-mid:   #475569;
+  --text-light: #94a3b8;
+
+  --bg:       #ffffff;
+  --bg-light: #f8faf5;
+  --border:   #e2e8f0;
+
+  /* Typography (Inter + Noto Sans JP) */
+  --font-sans: "Inter", "Noto Sans JP", sans-serif;
+
+  /* Spacing scale (from Figma: py-140 px-220 → responsive) */
+  --section-py: 6rem;
+  --container: 1200px;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--bg-light);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
