@@ -897,6 +897,31 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
 }
 .bg-light .target-item { background: var(--bg); }
 
+.target-check-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+.target-check-list li {
+  background: #fff;
+  padding: 18px 18px 18px 52px;
+  border-radius: var(--radius);
+  position: relative;
+  font-size: 15px;
+  box-shadow: var(--shadow-sm);
+}
+.bg-light .target-check-list li { background: var(--bg); }
+.target-check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  color: var(--green-700);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+}
+
 /* ---------- Highlight Band ---------- */
 .highlight-band {
   background: var(--green-800);
