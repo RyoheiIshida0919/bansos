@@ -216,20 +216,28 @@
         return;
       }
 
-      // ---------------------------------------------------------------
-      // TODO: ここを実際の送信エンドポイントに置き換えてください
-      //   例) Cloudflare Workers: fetch('/api/contact', { method:'POST', body: new FormData(contactForm) })
-      //   例) Formspree: contactForm.action = 'https://formspree.io/f/YOUR_FORM_ID'
-      // ---------------------------------------------------------------
       const submitBtn = contactForm.querySelector('[type="submit"]');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
 
-      // デモ用: 1.5秒後に成功表示
-      setTimeout(function () {
-        contactForm.style.display = 'none';
-        const successEl = document.getElementById('form-success');
-        if (successEl) successEl.style.display = 'block';
-      }, 1500);
+      fetch('/api/contact', {
+        method: 'POST',
+        body: new FormData(contactForm),
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          if (json.ok) {
+            contactForm.style.display = 'none';
+            const successEl = document.getElementById('form-success');
+            if (successEl) successEl.style.display = 'block';
+          } else {
+            alert('送信に失敗しました。お手数ですがメールにてご連絡ください。');
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '送信する'; }
+          }
+        })
+        .catch(function () {
+          alert('送信に失敗しました。お手数ですがメールにてご連絡ください。');
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '送信する'; }
+        });
     });
   }
 
