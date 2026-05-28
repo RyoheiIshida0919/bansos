@@ -1288,6 +1288,9 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
   .footer-nav-cols { flex-direction: column; gap: 24px; }
   .values-grid { grid-template-columns: 1fr; }
   .company-table th { width: 100px; }
+  /* 1024pxブロックによる上書きをリセット */
+  .rep-inner { grid-template-columns: 1fr; gap: 32px; }
+  .rep-photo { max-width: 280px; margin-inline: auto; }
   .mission-ja { font-size: clamp(26px, 7vw, 40px); }
 }
 
