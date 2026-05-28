@@ -87,26 +87,81 @@ export async function onRequestPost(context) {
 </p>
 `;
 
-  try {
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'website@bansos.co.jp',
-        to: ['info@bansos.co.jp'],
-        reply_to: email.trim(),
-        subject: '【お問い合わせ】ホームページより',
-        html,
-      }),
-    });
+  const autoReplyHtml = `
+<p style="font-size:15px;line-height:1.8">
+  ${escHtml(name)} 様<br><br>
+  この度はバンソウズ合同会社へお問い合わせいただき、ありがとうございます。<br>
+  以下の内容でお問い合わせを受け付けました。<br>
+  通常2営業日以内にご連絡いたします。
+</p>
+<table style="border-collapse:collapse;width:100%;max-width:600px;font-size:14px;margin-top:24px">
+  <tr>
+    <th style="text-align:left;padding:8px 12px;border:1px solid #ddd;background:#f5f5f5;white-space:nowrap">会社名</th>
+    <td style="padding:8px 12px;border:1px solid #ddd">${escHtml(company || '未入力')}</td>
+  </tr>
+  <tr>
+    <th style="text-align:left;padding:8px 12px;border:1px solid #ddd;background:#f5f5f5;white-space:nowrap">お名前</th>
+    <td style="padding:8px 12px;border:1px solid #ddd">${escHtml(name)}</td>
+  </tr>
+  <tr>
+    <th style="text-align:left;padding:8px 12px;border:1px solid #ddd;background:#f5f5f5;white-space:nowrap">お問い合わせ種別</th>
+    <td style="padding:8px 12px;border:1px solid #ddd">${categoryLabel}</td>
+  </tr>
+  <tr>
+    <th style="text-align:left;padding:8px 12px;border:1px solid #ddd;background:#f5f5f5;white-space:nowrap;vertical-align:top">お問い合わせ内容</th>
+    <td style="padding:8px 12px;border:1px solid #ddd;white-space:pre-wrap">${escHtml(body)}</td>
+  </tr>
+</table>
+<hr style="margin:24px 0;border:none;border-top:1px solid #eee">
+<p style="font-size:13px;color:#888;line-height:1.8">
+  ※このメールは自動送信です。このメールへの返信はご対応できません。<br>
+  バンソウズ合同会社<br>
+  info@bansos.co.jp
+</p>
+`;
 
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Resend error:', res.status, err);
+  try {
+    const [notifyRes, autoReplyRes] = await Promise.all([
+      fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'website@bansos.co.jp',
+          to: ['info@bansos.co.jp'],
+          reply_to: email.trim(),
+          subject: '【お問い合わせ】ホームページより',
+          html,
+        }),
+      }),
+      fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'website@bansos.co.jp',
+          to: [email.trim()],
+          reply_to: 'info@bansos.co.jp',
+          subject: '【自動返信】お問い合わせを受け付けました｜バンソウズ合同会社',
+          html: autoReplyHtml,
+        }),
+      }),
+    ]);
+
+    if (!notifyRes.ok) {
+      const err = await notifyRes.text();
+      console.error('Resend notify error:', notifyRes.status, err);
       return jsonRes({ ok: false }, 500);
+    }
+
+    if (!autoReplyRes.ok) {
+      // 自動返信失敗はログのみ。通知は成功しているので ok: true を返す
+      const err = await autoReplyRes.text();
+      console.error('Resend auto-reply error:', autoReplyRes.status, err);
     }
 
     return jsonRes({ ok: true }, 200);
