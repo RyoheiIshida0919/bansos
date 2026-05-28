@@ -31,7 +31,7 @@
             <li><a href="/services/ai-efficiency/">AI業務効率化</a></li>
           </ul>
         </li>
-        <li><a href="/works/">実績</a></li>
+
         <li><a href="/faq/">よくある質問</a></li>
         <li><a href="/company/">会社概要</a></li>
         <li><a href="/contact/" class="nav-cta">無料相談する</a></li>
@@ -185,6 +185,12 @@
             <span class="form-error" role="alert"></span>
           </div>
 
+          <!-- honeypot: ボット対策（ユーザーには非表示） -->
+          <div style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true">
+            <label for="_hp">このフィールドは入力しないでください</label>
+            <input type="text" id="_hp" name="_hp" tabindex="-1" autocomplete="off">
+          </div>
+
           <p class="form-note">
             送信いただいた内容は、<a href="/privacy/" style="color:var(--green-800)">プライバシーポリシー</a>に基づき適切に管理します。
           </p>
@@ -193,6 +199,9 @@
             <button type="submit" class="btn btn-primary">送信する</button>
           </div>
         </form>
+
+        <!-- 送信失敗メッセージ -->
+        <div id="form-alert-error" style="display:none;margin-top:16px;padding:16px 20px;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;color:#b91c1c;font-size:14px" role="alert"></div>
 
         <!-- 送信完了メッセージ -->
         <div id="form-success" class="form-success" role="status">
@@ -255,7 +264,7 @@
         <div class="footer-nav-col">
           <h4>サイト情報</h4>
           <ul>
-            <li><a href="/works/">実績</a></li>
+    
             <li><a href="/faq/">よくある質問</a></li>
             <li><a href="/company/">会社概要</a></li>
             <li><a href="/contact/">お問い合わせ</a></li>

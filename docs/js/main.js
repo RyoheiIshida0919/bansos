@@ -156,7 +156,7 @@
   });
 
   // --------------------------------------------------
-  // 7. お問い合わせフォームバリデーション
+  // 7. お問い合わせフォームバリデーション・送信
   // --------------------------------------------------
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
@@ -166,8 +166,10 @@
       email   : { el: contactForm.querySelector('[name="email"]'),    msg: 'メールアドレスを入力してください', type: 'email' },
       tel     : { el: contactForm.querySelector('[name="tel"]'),      msg: null }, // 任意
       category: { el: contactForm.querySelector('[name="category"]'), msg: 'お問い合わせ種別を選択してください' },
-      body    : { el: contactForm.querySelector('[name="body"]'),     msg: 'お問い合わせ内容を入力してください' },
+      body    : { el: contactForm.querySelector('[name="body"]'),     msg: 'お問い合わせ内容を入力してください', maxLen: 5000 },
     };
+
+    const formAlertEl = document.getElementById('form-alert-error');
 
     function showError(key, msg) {
       const f = fields[key];
@@ -183,22 +185,29 @@
       const errEl = f.el.parentElement.querySelector('.form-error');
       if (errEl) errEl.classList.remove('show');
     }
+    function showFormAlert(msg) {
+      if (!formAlertEl) return;
+      formAlertEl.textContent = msg;
+      formAlertEl.style.display = 'block';
+    }
+    function hideFormAlert() {
+      if (formAlertEl) formAlertEl.style.display = 'none';
+    }
 
     // リアルタイムクリア
     Object.keys(fields).forEach(function (key) {
       const f = fields[key];
       if (!f.el) return;
-      f.el.addEventListener('input', function () { clearError(key); });
-      f.el.addEventListener('change', function () { clearError(key); });
+      f.el.addEventListener('input', function () { clearError(key); hideFormAlert(); });
+      f.el.addEventListener('change', function () { clearError(key); hideFormAlert(); });
     });
 
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      let valid = true;
-      Object.keys(fields).forEach(function (key) {
-        clearError(key);
-      });
+      hideFormAlert();
+      Object.keys(fields).forEach(function (key) { clearError(key); });
 
+      let valid = true;
       Object.keys(fields).forEach(function (key) {
         const f = fields[key];
         if (!f.el || !f.msg) return;
@@ -206,6 +215,11 @@
         if (!val) { showError(key, f.msg); valid = false; return; }
         if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
           showError(key, '正しいメールアドレスを入力してください');
+          valid = false;
+          return;
+        }
+        if (f.maxLen && f.el.value.length > f.maxLen) {
+          showError(key, f.maxLen + '文字以内で入力してください');
           valid = false;
         }
       });
@@ -219,23 +233,35 @@
       const submitBtn = contactForm.querySelector('[type="submit"]');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
 
+      const payload = {
+        company : (fields.company.el  ? fields.company.el.value.trim()  : ''),
+        name    : fields.name.el.value.trim(),
+        email   : fields.email.el.value.trim(),
+        tel     : (fields.tel.el      ? fields.tel.el.value.trim()      : ''),
+        category: fields.category.el.value,
+        body    : fields.body.el.value.trim(),
+        _hp     : (contactForm.querySelector('[name="_hp"]') ? contactForm.querySelector('[name="_hp"]').value : ''),
+      };
+
       fetch('/api/contact', {
         method: 'POST',
-        body: new FormData(contactForm),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       })
         .then(function (res) { return res.json(); })
         .then(function (json) {
           if (json.ok) {
+            contactForm.reset();
             contactForm.style.display = 'none';
             const successEl = document.getElementById('form-success');
             if (successEl) successEl.style.display = 'block';
           } else {
-            alert('送信に失敗しました。お手数ですがメールにてご連絡ください。');
+            showFormAlert('送信に失敗しました。お手数ですがしばらく経ってから再度お試しいただくか、メールにてご連絡ください。');
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '送信する'; }
           }
         })
         .catch(function () {
-          alert('送信に失敗しました。お手数ですがメールにてご連絡ください。');
+          showFormAlert('送信に失敗しました。お手数ですがしばらく経ってから再度お試しいただくか、メールにてご連絡ください。');
           if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '送信する'; }
         });
     });
