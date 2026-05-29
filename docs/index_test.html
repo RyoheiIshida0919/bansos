@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>バンソウズ合同会社｜地域に選択肢をつくる伴走型事業推進</title>
+  <meta name="description" content="地域に選択肢をつくる。通販の運営代行・経営支援・AI業務効率化。企業の課題を取り除きながら、事業を止めずに推進し続ける伴走型支援。島根県を拠点に全国対応。">
+  <meta property="og:title" content="バンソウズ合同会社｜地域に選択肢をつくる">
+  <meta property="og:description" content="企業の課題を取り除きながら、事業を止めずに推進し続ける伴走型支援。通販運営代行・経営支援・AI業務効率化。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bansos.co.jp/">
+  <meta property="og:image" content="https://bansos.co.jp/images/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Google tag (gtag.js) -->
+  <!-- TODO: G-XXXXXXXXXX を実際のGA4測定IDに置き換えてください -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* ----- PARTNER VOICES (test) ----- */
+    .voices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .voice-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .voice-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .voice-photo-placeholder::after {
+      content: "写真";
+      font-size: 14px;
+      color: #94a3b8;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .voice-body {
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+    .voice-quote {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-mid);
+      border-left: 3px solid var(--green-800);
+      padding-left: 16px;
+      font-style: normal;
+      quotes: none;
+    }
+    .voice-meta {
+      margin-top: auto;
+    }
+    .voice-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .voice-company {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+    .voices-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+    @media (max-width: 860px) {
+      .voices-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+    }
+    @media (min-width: 861px) and (max-width: 1060px) {
+      .voices-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="バンソウズ合同会社 トップへ">
+      <img src="/images/logo.png" alt="バンソウズ合同会社">
+    </a>
+    <nav id="site-nav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#services">サービス</a></li>
+
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#company">会社概要</a></li>
+        <li><a href="#contact" class="nav-cta">無料相談する</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1>地域に<br>選択肢をつくる。</h1>
+      <p class="hero-sub">「できない」を「できる」に。</p>
+      <p class="hero-lead">
+        地方の中小企業が抱える課題に、アドバイスだけでなく実務ごと向き合う。<br>
+        企業の課題を取り除きながら、事業を止めずに推進し続ける——<br>
+        それが、バンソウズの伴走型事業推進です。
+      </p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn btn-primary">無料相談する</a>
+        <a href="#about" class="btn btn-outline">私たちについて</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/images/logo-vertical.png" alt="バンソウズ合同会社ロゴ">
+    </div>
+  </div>
+</section>
+
+<!-- ========== MISSION ========== -->
+<section class="mission-band" aria-label="ミッション">
+  <div class="container">
+    <p class="mission-ja">地域に選択肢をつくる。</p>
+    <p class="mission-sub">Creating Options for the Region</p>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">伴走型事業推進</p>
+      <h2>バンソウズとは</h2>
+    </div>
+    <div class="about-body">
+      <p class="about-lead">
+        島根県を拠点に、地方の中小企業の「やりたいこと」を実行できる環境をつくる会社です。
+      </p>
+      <p>
+        多くの中小企業が、課題の「やり方」は知っていても「手が動かない」状態に直面しています。
+        バンソウズは、戦略を考えるだけでなく、必要なら実務まで引き受けます。
+        企業の課題を取り除きながら、事業を止めずに推進し続けること——それが私たちの仕事です。
+      </p>
+      <p>
+        通販の運営代行を中核に、経営支援・AI業務効率化を組み合わせた支援で、
+        経営者の右腕として長期的に伴走します。
+      </p>
+      <div class="about-values">
+        <div class="about-value-item">
+          <div class="about-value-num">01</div>
+          <div>
+            <strong>実務まで担う</strong>
+            <span>「言うだけ」で終わらず、メルマガ・広告・数字整理まで手を動かします</span>
+          </div>
+        </div>
+        <div class="about-value-item">
+          <div class="about-value-num">02</div>
+          <div>
+            <strong>仕組みを社内に残す</strong>
+            <span>代行しながら、最終的には自社で回せる体制づくりまで支援します</span>
+          </div>
+        </div>
+        <div class="about-value-item">
+          <div class="about-value-num">03</div>
+          <div>
+            <strong>複数領域を横断して見る</strong>
+            <span>EC・経営・AIを一箇所で対応し、複数の専門家に頼む手間をなくします</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES OVERVIEW ========== -->
+<section id="services" class="bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>事業内容</h2>
+      <p>3つの支援領域で、企業の課題を総合的にサポートします。</p>
+    </div>
+    <div class="services-grid">
+      <a href="/ec/" class="service-card">
+        <div class="service-num">01</div>
+        <h3>通販の運営代行</h3>
+        <p>楽天・Amazon・自社ECの戦略設計から日々の運用まで一貫対応。リピート施策を軸に、実務ごと引き受けて売上成長を実現します。</p>
+        <span class="read-more">詳しく見る →</span>
+      </a>
+      <a href="/support/" class="service-card">
+        <div class="service-num">02</div>
+        <h3>経営支援</h3>
+        <p>数字の見える化・業務フローの整理・意思決定の支援。アドバイスだけでなく、必要なら実務まで引き取り、経営者が本来の仕事に集中できる環境を整えます。</p>
+        <span class="read-more">詳しく見る →</span>
+      </a>
+      <a href="/ai/" class="service-card">
+        <div class="service-num">03</div>
+        <h3>AI業務効率化</h3>
+        <p>AI・GASによる自動化で、繰り返し業務を削減。「やらなくていい仕事」を仕組みに変え、スタッフが本来の仕事に集中できる体制をつくります。</p>
+        <span class="read-more">詳しく見る →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CASES（非公開中）========== -->
+<!--
+<section id="cases">
+  <div class="container">
+    <div class="section-header">
+      <h2>支援実績</h2>
+      <p>「売上が伸びない」から「自走できる体制」へ</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <span class="case-tag">食品・旅館 EC</span>
+        <h3>有限会社 湯宿温泉堂 様<br><small style="font-weight:400;font-size:14px">（※社名は仮称。実名は掲載許可取得後に更新）</small></h3>
+        <div class="case-result">
+          <span class="result-num">約5倍</span>
+          <span class="result-label">の売上成長</span>
+        </div>
+        <p class="case-challenge"><strong>課題：</strong>EC人材・ノウハウ不足でリピート施策が停止していた</p>
+        <ul class="case-items">
+          <li>メルマガ設計・配信代行によるリピート売上の確保</li>
+          <li>ギフト施策の年間計画設計＋早割導入</li>
+          <li>LINE導線整備・DM制作</li>
+          <li>社内へのノウハウ移管・担当者育成</li>
+        </ul>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">食品・フルーツ EC</span>
+        <h3>株式会社 果物園やまもと 様<br><small style="font-weight:400;font-size:14px">（※社名は仮称。実名は掲載許可取得後に更新）</small></h3>
+        <div class="case-result">
+          <span class="result-num">約10倍</span>
+          <span class="result-label">の売上成長</span>
+        </div>
+        <p class="case-challenge"><strong>課題：</strong>モール出店はしていたが、売上を活かしきれていなかった</p>
+        <ul class="case-items">
+          <li>自社EC・楽天・Amazonの統合戦略設計</li>
+          <li>商品ページ制作・SEO・SNS広告設計</li>
+          <li>初回施策は代行、後半は社内担当へ引き継ぎ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ========== COMPANY SUMMARY ========== -->
+<section id="company" class="bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>会社概要</h2>
+    </div>
+    <div class="company-summary-grid">
+      <div class="company-summary-text">
+        <p>島根県を拠点に、地方の中小企業が「やりたいこと」を実行できる環境を作るための伴走支援を行っています。</p>
+        <p>アドバイスだけで終わらず、必要なら手を動かす。それが私たちの流儀です。</p>
+      </div>
+      <div class="company-summary-table">
+        <table>
+          <tr><th>会社名</th><td>バンソウズ合同会社</td></tr>
+          <tr><th>所在地</th><td>島根県出雲市平田町1708-1</td></tr>
+          <tr><th>事業内容</th><td>通販運営代行 / 経営支援 / AI業務効率化</td></tr>
+          <tr><th>対応エリア</th><td>全国（リモート対応）</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== REPRESENTATIVE ========== -->
+<section id="representative">
+  <div class="container">
+    <div class="section-header">
+      <h2>代表者紹介</h2>
+    </div>
+    <div class="rep-inner">
+      <div class="rep-photo">
+        <img src="/images/representative.jpg" alt="バンソウズ合同会社 代表">
+      </div>
+      <div class="rep-body">
+        <p class="rep-name">石田 亮平</p>
+        <p class="rep-title">バンソウズ合同会社 代表社員</p>
+        <p class="rep-bio">
+          島根県出雲市出身。一橋大学商学部卒。高知県四万十町の株式会社四万十ドラマにて、道の駅「四万十とおわ」のインターネット通販を事業化。四万十町ふるさと納税のトータルプロデュースを担当し、前年度400万円の寄付額を初年で7億5千万円に引き上げた実績を持つ。
+        </p>
+        <p class="rep-bio">
+          2016年に島根県へUターンし、通販支援事業を開始。2020年に法人化し、現在に至る。通販の運営代行を中核に、経営支援・AI業務効率化を組み合わせ、地方の中小企業の経営者の右腕として長期的に伴走します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARTNER VOICES ========== -->
+<section id="voices" class="bg-light">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">お取引先の声</p>
+      <h2>一緒に仕事をした方から</h2>
+      <p>バンソウズと伴走してきた事業者の方々から、ひとことメッセージをいただきました。</p>
+    </div>
+    <div class="voices-grid">
+
+      <div class="voice-card">
+        <div class="voice-photo">
+          <div class="voice-photo-placeholder"></div>
+        </div>
+        <div class="voice-body">
+          <blockquote class="voice-quote">
+            「相談してみたら、想像以上に動いてくれた。アドバイスだけでなく、実際に手を動かしてくれる人がいるというのは、小さな会社には本当にありがたい存在です。今では経営の右腕として完全に信頼しています。」
+          </blockquote>
+          <div class="voice-meta">
+            <p class="voice-name">山田 太郎</p>
+            <p class="voice-company">○○食品株式会社 代表取締役</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="voice-photo">
+          <div class="voice-photo-placeholder"></div>
+        </div>
+        <div class="voice-body">
+          <blockquote class="voice-quote">
+            「楽天の売上が伸び悩んでいたところを、メルマガとリピート施策で立て直してもらいました。自分たちでは思いつかなかった視点で動いてくれて、半年で売上が2倍以上になりました。」
+          </blockquote>
+          <div class="voice-meta">
+            <p class="voice-name">鈴木 花子</p>
+            <p class="voice-company">△△工房 合同会社 代表社員</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="voice-photo">
+          <div class="voice-photo-placeholder"></div>
+        </div>
+        <div class="voice-body">
+          <blockquote class="voice-quote">
+            「AI活用で毎月20時間以上かかっていた作業が自動化されました。スタッフが本来の仕事に集中できるようになり、社内の雰囲気も明らかに変わりました。思い切って相談してよかったです。」
+          </blockquote>
+          <div class="voice-meta">
+            <p class="voice-name">田中 健一</p>
+            <p class="voice-company">株式会社□□商店 代表取締役</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="voices-note">※ 掲載内容は本人の許可を得て掲載しています。</p>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>よくある質問</h2>
+      <p>地方の中小企業の経営者からよくいただく疑問にお答えします。</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>相談だけでも大丈夫ですか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>はい、もちろんです。「何を依頼すればいいかわからない」「まだ依頼するかどうか決めていない」という段階でもお気軽にご相談ください。現状をお聞きして、一緒に整理することから始めます。無理な営業はしません。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>費用感を教えてください。</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>通販の運営代行は月15万円〜、経営支援は月10万円〜が目安です（各税別）。AI業務効率化は内容・規模によりお見積もりします。まずは現状をお聞きし、費用対効果の見立てを含めてご提案します。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>島根県外（遠方）でも対応できますか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>全国対応しています。基本はオンライン（Zoom等）とチャットでの支援です。島根県内の場合は必要に応じて現地訪問にも対応します。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>最低契約期間はありますか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>継続的な伴走型支援を基本としているため、スポットや短期（1〜2ヶ月）のみのご依頼はお断りしています。成果を出すために必要な期間（目安6ヶ月〜）を前提にご検討ください。AI業務効率化については、内容によりスポット対応も可能です。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>どのくらいの規模の会社が対象ですか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>売上規模よりも「長期前提で成果を積み上げていきたいか」を重視しています。通販運営代行は年商1,000万〜3億円程度の事業者が中心ですが、それ以外の規模でもまずはご相談ください。</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>複数のサービスをまとめて依頼できますか？</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>はい、可能です。通販運営代行・経営支援・AI業務効率化を組み合わせてご依頼いただくケースが多いです。複数領域をまとめて一箇所で対応できる点が、バンソウズの強みの一つです。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="bg-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>お問い合わせ・無料相談</h2>
+      <p>
+        「何から相談すればいいか分からない」でも大丈夫です。<br>
+        現状をお聞きして、必要な支援を一緒に整理します。<br>
+        無理な営業はしません。30分で持ち帰れる話をします。
+      </p>
+    </div>
+    <div class="contact-layout">
+
+      <div>
+        <form
+          id="contact-form"
+          action="/api/contact"
+          method="POST"
+          novalidate
+        >
+          <div class="form-group">
+            <label class="form-label" for="company">
+              会社名<span class="form-required">必須</span>
+            </label>
+            <input type="text" id="company" name="company" class="form-input" placeholder="株式会社〇〇" autocomplete="organization">
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="name">
+              お名前<span class="form-required">必須</span>
+            </label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="山田 太郎" autocomplete="name">
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">
+              メールアドレス<span class="form-required">必須</span>
+            </label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="example@company.co.jp" autocomplete="email">
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tel">
+              電話番号<span style="font-size:12px;color:var(--text-light);margin-left:6px">任意</span>
+            </label>
+            <input type="tel" id="tel" name="tel" class="form-input" placeholder="090-0000-0000" autocomplete="tel">
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="category">
+              お問い合わせ種別<span class="form-required">必須</span>
+            </label>
+            <select id="category" name="category" class="form-select">
+              <option value="">選択してください</option>
+              <option value="ecommerce">通販の運営代行について</option>
+              <option value="management">経営支援について</option>
+              <option value="ai">AI業務効率化について</option>
+              <option value="multiple">複数のサービスについて</option>
+              <option value="other">その他</option>
+            </select>
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="body">
+              お問い合わせ内容<span class="form-required">必須</span>
+            </label>
+            <textarea id="body" name="body" class="form-textarea" placeholder="現在の状況・課題・ご相談内容をお書きください。&#10;例：楽天市場で売上が伸び悩んでいます。担当者もおらず、何から手をつければいいかわかりません。"></textarea>
+            <span class="form-error" role="alert"></span>
+          </div>
+
+          <p class="form-note">
+            送信いただいた内容は、<a href="/privacy/" style="color:var(--green-800)">プライバシーポリシー</a>に基づき適切に管理します。
+          </p>
+
+          <div class="form-submit-wrap">
+            <button type="submit" class="btn btn-primary">送信する</button>
+          </div>
+        </form>
+
+        <div id="form-success" class="form-success" role="status">
+          <p style="font-size:20px;font-weight:700;margin-bottom:12px">送信が完了しました。</p>
+          <p>お問い合わせいただきありがとうございます。<br>通常2営業日以内にご連絡いたします。</p>
+        </div>
+      </div>
+
+      <div class="contact-aside">
+        <div class="contact-info-card">
+          <h3>こんな方からのご相談を歓迎します</h3>
+          <p>
+            ・通販の売上を上げたいが何から始めればいいか<br>
+            ・EC担当者がおらず、困っている<br>
+            ・経営の数字が見えない<br>
+            ・業務を自動化したい<br>
+            ・相談だけしてみたい
+          </p>
+        </div>
+        <div class="contact-info-card">
+          <h3>対応について</h3>
+          <p>
+            <strong>返信目安：</strong>2営業日以内<br>
+            <strong>対応時間：</strong>平日 9:00〜18:00<br>
+            <strong>対応方法：</strong>メール・オンラインMTG<br>
+            <strong>対応エリア：</strong>全国（リモート対応）
+          </p>
+        </div>
+        <div class="contact-info-card">
+          <h3>無理な営業はしません</h3>
+          <p>まず現状をお聞きして、必要な支援を一緒に考えます。「今すぐ依頼するかどうか決めていない」でも歓迎です。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer id="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" aria-label="バンソウズ合同会社 トップへ">
+        <img src="/images/logo.png" alt="バンソウズ合同会社" class="footer-logo">
+      </a>
+      <p class="footer-tagline">地域に、選択肢をつくる。<br>通販運営代行・経営支援・AI業務効率化</p>
+    </div>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <h4>サービス</h4>
+          <ul>
+            <li><a href="/ec/">通販の運営代行</a></li>
+            <li><a href="/support/">経営支援</a></li>
+            <li><a href="/ai/">AI業務効率化</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>サイト情報</h4>
+          <ul>
+    
+            <li><a href="#faq">よくある質問</a></li>
+            <li><a href="#company">会社概要</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+            <li><a href="/privacy/">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 バンソウズ合同会社</p>
+      <div class="footer-copy-links">
+        <a href="/privacy/">プライバシーポリシー</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
