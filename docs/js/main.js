@@ -241,6 +241,7 @@
         category: fields.category.el.value,
         body    : fields.body.el.value.trim(),
         _hp     : (contactForm.querySelector('[name="_hp"]') ? contactForm.querySelector('[name="_hp"]').value : ''),
+        'cf-turnstile-response': (contactForm.querySelector('[name="cf-turnstile-response"]') ? contactForm.querySelector('[name="cf-turnstile-response"]').value : ''),
       };
 
       fetch('/api/contact', {

@@ -1,3 +1,5 @@
+const VALID_CATEGORIES = new Set(['ecommerce', 'management', 'ai', 'multiple', 'other']);
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -25,6 +27,7 @@ export async function onRequestPost(context) {
     category = '',
     body     = '',
     _hp      = '',
+    'cf-turnstile-response': turnstileToken = '',
   } = data;
 
   // Honeypot: 入力があればボットと判断し、成功を偽装
@@ -32,12 +35,29 @@ export async function onRequestPost(context) {
     return jsonRes({ ok: true }, 200);
   }
 
+  // Cloudflare Turnstile 検証
+  if (env.TURNSTILE_SECRET_KEY) {
+    const formData = new FormData();
+    formData.append('secret', env.TURNSTILE_SECRET_KEY);
+    formData.append('response', turnstileToken);
+    formData.append('remoteip', request.headers.get('CF-Connecting-IP') || '');
+    const tsRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+    });
+    const tsJson = await tsRes.json();
+    if (!tsJson.success) {
+      console.error('Turnstile failed:', tsJson['error-codes']);
+      return jsonRes({ ok: false }, 400);
+    }
+  }
+
   // バリデーション
-  if (!name.trim())                                         return jsonRes({ ok: false }, 400);
-  if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return jsonRes({ ok: false }, 400);
-  if (!category.trim())                                     return jsonRes({ ok: false }, 400);
-  if (!body.trim())                                         return jsonRes({ ok: false }, 400);
-  if (body.length > 5000)                                   return jsonRes({ ok: false }, 400);
+  if (!name.trim())                                                               return jsonRes({ ok: false }, 400);
+  if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))         return jsonRes({ ok: false }, 400);
+  if (!VALID_CATEGORIES.has(category))                                            return jsonRes({ ok: false }, 400);
+  if (!body.trim())                                                               return jsonRes({ ok: false }, 400);
+  if (body.length > 5000)                                                         return jsonRes({ ok: false }, 400);
 
   const categoryLabel = {
     ecommerce  : '通販の運営代行について',
