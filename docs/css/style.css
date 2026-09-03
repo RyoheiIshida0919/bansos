@@ -996,6 +996,98 @@ h3 { font-size: clamp(18px, 2.5vw, 22px); }
 }
 .work-items li::before { content: "✓"; position: absolute; left: 0; color: var(--green-700); font-weight: 700; }
 
+/* ---------- AI Case (before/after + flow + result) ---------- */
+.ai-case-block {
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  background: #fff;
+  margin-bottom: 40px;
+}
+.ai-case-block:last-child { margin-bottom: 0; }
+.ai-case-header { margin-bottom: 28px; }
+.ai-case-header h2 { font-size: 20px; margin-top: 10px; }
+
+.ai-case-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.ai-case-compare-item {
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  border: 2px solid var(--border);
+}
+.ai-case-compare-item.before { background: #fef2f2; border-color: #fecaca; }
+.ai-case-compare-item.after { background: var(--green-50); border-color: var(--green-100); }
+.ai-case-compare-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.ai-case-compare-item.before .ai-case-compare-label { background: #fee2e2; color: #b91c1c; }
+.ai-case-compare-item.after .ai-case-compare-label { background: var(--green-100); color: var(--green-800); }
+.ai-case-compare-item p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+.ai-case-flow {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.ai-case-flow-step {
+  flex: 1 1 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.ai-case-flow-step.highlight { background: var(--green-800); border-color: var(--green-800); color: #fff; }
+.ai-case-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 18px;
+  font-weight: 700;
+  flex: 0 0 auto;
+  width: 20px;
+}
+
+.ai-case-result {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--green-50);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  margin-bottom: 24px;
+}
+.ai-case-result-num { font-size: 32px; font-weight: 800; color: var(--green-800); line-height: 1; }
+.ai-case-result-label { font-size: 14px; color: var(--text-mid); }
+.ai-case-block .work-items { margin-top: 4px; }
+
+@media (max-width: 640px) {
+  .ai-case-block { padding: 24px 20px; }
+  .ai-case-compare { grid-template-columns: 1fr; }
+  .ai-case-flow { flex-direction: column; }
+  .ai-case-flow-arrow { transform: rotate(90deg); width: auto; height: 20px; }
+}
+
 /* ---------- Company ---------- */
 .company-table {
   width: 100%;
