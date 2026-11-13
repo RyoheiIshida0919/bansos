@@ -11,37 +11,51 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <style>
     .access-body { max-width: 760px; margin-inline: auto; }
+
+    .access-steps { display: grid; gap: 12px; margin-bottom: 24px; counter-reset: step; }
+    .access-step {
+      display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start;
+      background: var(--bg-light); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+    }
+    .access-step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 18px; color: #fff;
+    }
+    .access-step-num.is-parking { background: #1a5fd0; }
+    .access-step-num.is-office { background: #d93025; }
+    .access-step h2 { font-size: 17px; margin-bottom: 2px; }
+    .access-step p { font-size: 15px; line-height: 1.7; }
+
+    /* Leafletのz-indexがサイトの固定ヘッダーより前に出ないよう、地図内で閉じる */
     .access-map {
-      position: relative;
-      display: block;
-      border-radius: var(--radius);
-      overflow: hidden;
+      position: relative; isolation: isolate;
+      border-radius: var(--radius); overflow: hidden;
       border: 1px solid var(--border);
       aspect-ratio: 4 / 3;
-      background: var(--bg-light);
+      background: #f2f1ec;
     }
-    /* 地図は案内用の固定表示にし、タップでGoogleマップへ渡す（自前ピンと地図がずれないように） */
-    .access-map iframe { width: 100%; height: 100%; border: 0; display: block; pointer-events: none; }
-    .access-pin {
-      position: absolute; left: 50%; top: 50%;
-      transform: translate(-50%, -100%);
-      display: flex; flex-direction: column; align-items: center;
-      pointer-events: none;
-      filter: drop-shadow(0 2px 3px rgba(0,0,0,.35));
-    }
-    .access-pin-label {
+    .access-map .leaflet-container { width: 100%; height: 100%; font-family: inherit; background: #f2f1ec; }
+    .mk { position: relative; width: 34px; height: 46px; }
+    .mk svg { display: block; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+    .mk-label {
+      position: absolute;
       background: #fff; color: var(--text);
       font-size: 13px; font-weight: 700; line-height: 1.3;
-      padding: 5px 10px; border-radius: 999px; margin-bottom: 4px;
-      white-space: nowrap;
+      padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+      box-shadow: 0 1px 4px rgba(0,0,0,.3);
     }
-    .access-map-hint {
-      position: absolute; right: 10px; top: 10px;
-      background: rgba(255,255,255,.92); color: var(--green-800);
-      font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
-    }
+    /* 2つのピンはほぼ同じ高さで左右に並ぶため、駐車場のラベルは下で右向き、事務所のラベルは上で左向きに出し、
+       スマホ幅でも地図からはみ出さず互いに重ならないようにする */
+    .mk-parking .mk-label { top: 50px; left: -4px; border: 2px solid #1a5fd0; color: #1a5fd0; }
+    .mk-office .mk-label { bottom: 50px; right: -4px; border: 2px solid #d93025; color: #b3261e; }
+    .access-map-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font-size: 14px; }
+    .access-map-links a { color: var(--green-800); font-weight: 700; text-decoration: underline; }
+
     .access-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 56px; }
     .access-h { font-size: 20px; margin: 48px 0 16px; }
     .access-body p, .access-body li { color: var(--text-mid); }
@@ -73,7 +87,7 @@
     <span class="page-hero-eyebrow">ACCESS</span>
     <h1>事務所へのアクセス</h1>
     <p class="page-hero-lead" style="margin-bottom:0">
-      ご来社いただく際の、場所・駐車場・行き方のご案内です。
+      お車でお越しの方は、まず駐車場へお越しください。
     </p>
   </div>
 </div>
@@ -82,18 +96,39 @@
   <div class="container">
     <div class="access-body">
 
-      <a class="access-map" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%80%92693-0012%20%E5%B3%B6%E6%A0%B9%E7%9C%8C%E5%87%BA%E9%9B%B2%E5%B8%82%E5%A4%A7%E6%B4%A5%E6%96%B0%E5%B4%8E%E7%94%BA%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%94%EF%BC%96%E2%88%92%EF%BC%92%20%E6%A0%84%E5%85%89%E3%83%93%E3%83%AB%202F" target="_blank" rel="noopener" aria-label="Googleマップで事務所の場所を開く">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1400!2d132.7662898!3d35.369813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1794541819532" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" title="バンソウズ合同会社 事務所の地図"></iframe>
-        <span class="access-pin" aria-hidden="true">
-          <span class="access-pin-label">バンソウズ（栄光ビル2階）</span>
-          <svg viewBox="0 0 24 36" width="34" height="51"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 36 12 36s12-15.2 12-24.1C24 5.3 18.6 0 12 0z" fill="#d93025"/><circle cx="12" cy="12" r="4.6" fill="#7a1410"/></svg>
-        </span>
-        <span class="access-map-hint">タップでGoogleマップを開く</span>
-      </a>
+      <div class="access-steps">
+        <div class="access-step">
+          <span class="access-step-num is-parking">P</span>
+          <div>
+            <h2>まず駐車場に停める</h2>
+            <p>黄色い看板の「オゾンクリーニング コインズ中野店」の隣の駐車場です。</p>
+          </div>
+        </div>
+        <div class="access-step">
+          <span class="access-step-num is-office"><svg viewBox="0 0 34 46" width="16" height="22" aria-hidden="true"><path d="M17 0C7.6 0 0 7.5 0 16.8 0 29.5 17 46 17 46s17-16.5 17-29.2C34 7.5 26.4 0 17 0z" fill="#fff"/><circle cx="17" cy="17" r="6" fill="#d93025"/></svg></span>
+          <div>
+            <h2>歩いて事務所へ（約2分）</h2>
+            <p>小さな川の橋を渡ってすぐ、ひの歯科クリニック隣の栄光ビル2階です。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="access-map" id="access-map" role="img" aria-label="駐車場と事務所の位置を示した地図"></div>
+      <div class="access-map-links">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=35.369899,132.764835" target="_blank" rel="noopener">駐車場をGoogleマップで見る</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E3%80%92693-0012%20%E5%B3%B6%E6%A0%B9%E7%9C%8C%E5%87%BA%E9%9B%B2%E5%B8%82%E5%A4%A7%E6%B4%A5%E6%96%B0%E5%B4%8E%E7%94%BA%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%94%EF%BC%96%E2%88%92%EF%BC%92%20%E6%A0%84%E5%85%89%E3%83%93%E3%83%AB%202F" target="_blank" rel="noopener">事務所をGoogleマップで見る</a>
+      </div>
       <div class="access-actions">
         <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=35.3700187,132.7646291" target="_blank" rel="noopener">駐車場までルート案内</a>
         <a class="btn btn-outline" href="tel:08019352913">電話する</a>
       </div>
+
+      <h2 class="access-h">駐車場</h2>
+      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）の隣の駐車場に停めてください。駐車場から事務所までは、小さな川にかかる橋を渡って歩いてすぐです。</p>
+      <figure class="access-photo">
+        <img src="parking.jpg" alt="駐車場付近の様子。奥に黄色い看板のクリーニング店が見える" loading="lazy" width="1400" height="1050">
+        <figcaption>奥に見える黄色い看板がオゾンクリーニングです。その隣が駐車場です。</figcaption>
+      </figure>
 
       <h2 class="access-h">所在地</h2>
       <table class="company-table">
@@ -111,18 +146,9 @@
         </tr>
       </table>
 
-      <h2 class="access-h">駐車場</h2>
-      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）の隣の駐車場に停めてください。駐車場から事務所までは、小さな川にかかる橋を渡って歩いてすぐです。</p>
-      <figure class="access-photo">
-        <img src="parking.jpg" alt="駐車場付近の様子。奥に黄色い看板のクリーニング店が見える" loading="lazy" width="1400" height="1050">
-        <figcaption>奥に見える黄色い看板がオゾンクリーニングです。その隣が駐車場です。</figcaption>
-      </figure>
-
-      <h2 class="access-h">行き方</h2>
+      <h2 class="access-h">カーナビをお使いの方へ</h2>
       <ul class="access-list">
-        <li>お車の場合は、上の「駐車場までルート案内」を押すと、今いる場所から駐車場までの道順が表示されます。</li>
-        <li>カーナビでは「オゾンクリーニング コインズ中野店」（出雲市大津新崎町1丁目38）を目的地にしてください。</li>
-        <li>事務所は、ひの歯科クリニックのすぐ隣にある栄光ビルの2階です。</li>
+        <li>目的地は「オゾンクリーニング コインズ中野店」（出雲市大津新崎町1丁目38）にしてください。その隣が駐車場です。</li>
         <li>道に迷われたときは、お気軽にお電話ください。</li>
       </ul>
 
@@ -140,5 +166,55 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function () {
+  var PARKING = [35.369899, 132.764835];
+  var OFFICE = [35.369813, 132.7662898];
+
+  var map = L.map('access-map', {
+    // スマホでは1本指のドラッグをページのスクロールに残す（地図は2本指で操作）
+    dragging: !L.Browser.mobile,
+    tap: false,
+    scrollWheelZoom: false,
+    zoomSnap: 1,
+    attributionControl: false
+  });
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+  L.control.attribution({ prefix: false, position: 'bottomright' })
+    .addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>')
+    .addTo(map);
+
+  function pin(color, glyph) {
+    return '<svg viewBox="0 0 34 46" width="34" height="46">' +
+      '<path d="M17 0C7.6 0 0 7.5 0 16.8 0 29.5 17 46 17 46s17-16.5 17-29.2C34 7.5 26.4 0 17 0z" fill="' + color + '"/>' +
+      (glyph ? '<text x="17" y="22.5" text-anchor="middle" font-size="17" font-weight="800" fill="#fff" font-family="sans-serif">' + glyph + '</text>'
+             : '<circle cx="17" cy="17" r="6.5" fill="#fff"/>') + '</svg>';
+  }
+  function marker(latlng, cls, color, glyph, label) {
+    return L.marker(latlng, {
+      keyboard: false,
+      icon: L.divIcon({
+        className: '',
+        iconSize: [34, 46],
+        iconAnchor: [17, 46],
+        html: '<div class="mk ' + cls + '"><span class="mk-label">' + label + '</span>' + pin(color, glyph) + '</div>'
+      })
+    }).addTo(map);
+  }
+  marker(PARKING, 'mk-parking', '#1a5fd0', 'P', '駐車場（まずここへ）');
+  marker(OFFICE, 'mk-office', '#d93025', '', '事務所（栄光ビル2階）');
+
+  function fit() {
+    // 事務所のラベルは上、駐車場のラベルは下に出るので、その分の余白を上下に取る
+    map.fitBounds(L.latLngBounds([PARKING, OFFICE]), {
+      paddingTopLeft: [30, 90], paddingBottomRight: [30, 60], maxZoom: 17
+    });
+  }
+  fit();
+  window.addEventListener('resize', function () { map.invalidateSize(); fit(); });
+})();
+</script>
 </body>
 </html>
