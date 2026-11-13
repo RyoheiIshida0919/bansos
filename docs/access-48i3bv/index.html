@@ -15,7 +15,7 @@
   <style>
     .access-body { max-width: 760px; margin-inline: auto; }
 
-    .access-steps { display: grid; gap: 12px; margin-bottom: 24px; counter-reset: step; }
+    .access-steps { display: grid; gap: 12px; margin-bottom: 24px; }
     .access-step {
       display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start;
       background: var(--bg-light); border: 1px solid var(--border);
@@ -30,6 +30,9 @@
     .access-step-num.is-office { background: #d93025; }
     .access-step h2 { font-size: 17px; margin-bottom: 2px; }
     .access-step p { font-size: 15px; line-height: 1.7; }
+    .access-step-arrow { text-align: center; color: var(--text-light); font-size: 20px; line-height: 1; margin: -4px 0; }
+    .c-blue { color: #1a5fd0; font-weight: 700; }
+    .c-red { color: #b3261e; font-weight: 700; }
 
     /* Leafletのz-indexがサイトの固定ヘッダーより前に出ないよう、地図内で閉じる */
     .access-map {
@@ -42,17 +45,33 @@
     .access-map .leaflet-container { width: 100%; height: 100%; font-family: inherit; background: #f2f1ec; }
     .mk { position: relative; width: 34px; height: 46px; }
     .mk svg { display: block; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
-    .mk-label {
+    .mk-p {
+      position: relative; width: 22px; height: 22px; border-radius: 50%;
+      background: #1a5fd0; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.4);
+      color: #fff; font-weight: 800; font-size: 12px; line-height: 18px; text-align: center;
+    }
+    .mk-label, .mk-chip {
       position: absolute;
       background: #fff; color: var(--text);
       font-size: 13px; font-weight: 700; line-height: 1.3;
       padding: 5px 10px; border-radius: 999px; white-space: nowrap;
       box-shadow: 0 1px 4px rgba(0,0,0,.3);
     }
-    /* 駐車場は左上・事務所は右下に並ぶため、駐車場のラベルは上で右向き、事務所のラベルは下で左向きに出し、
-       スマホ幅でも地図からはみ出さず、相手のピンとも重ならないようにする */
-    .mk-parking .mk-label { bottom: 50px; left: -4px; border: 2px solid #1a5fd0; color: #1a5fd0; }
+    /* 駐車場は左上・事務所は右下に並ぶ。駐車場のラベルは駐車場の下で右向き、事務所のラベルはピンの下で左向きに出し、
+       スマホ幅でも地図からはみ出さず、ラベル同士が重ならないようにする */
+    .mk-p .mk-label { top: 26px; left: -8px; border: 2px solid #1a5fd0; color: #1a5fd0; }
     .mk-office .mk-label { top: 50px; right: -4px; border: 2px solid #d93025; color: #b3261e; }
+    .mk-chip { padding: 3px 9px; font-size: 12px; }
+    .mk-chip.is-blue { border: 2px solid #1a5fd0; color: #1a5fd0; }
+    .mk-chip.is-red { border: 2px solid #d93025; color: #b3261e; }
+    .mk-head svg { display: block; overflow: visible; }
+
+    .access-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 10px; font-size: 13px; color: var(--text-mid); }
+    .access-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .lg-lot { width: 18px; height: 12px; background: rgba(26,95,208,.45); border: 2px solid #1a5fd0; border-radius: 2px; }
+    .lg-walk { width: 22px; border-top: 3px dashed #d93025; }
+    .lg-shop { width: 18px; height: 12px; background: #f6c400; border: 2px solid #8a5a00; border-radius: 2px; }
+
     .access-map-links { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font-size: 14px; }
     .access-map-links a { color: var(--green-800); font-weight: 700; text-decoration: underline; }
 
@@ -60,7 +79,10 @@
     .access-h { font-size: 20px; margin: 48px 0 16px; }
     .access-body p, .access-body li { color: var(--text-mid); }
     .access-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-    .access-photo img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+    .access-photo-img { position: relative; }
+    .access-photo-img img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+    /* 写真と同じ1200×900の座標で描いた矢印・色付けを、写真の上にぴったり重ねる */
+    .photo-mark { position: absolute; inset: 0; width: 100%; height: 100%; font-family: 'Noto Sans JP', sans-serif; pointer-events: none; }
     .access-photo figcaption { font-size: 14px; line-height: 1.6; color: var(--text-mid); margin-top: 8px; }
     .access-list { list-style: disc; padding-left: 1.4em; display: grid; gap: 6px; }
     .access-body .company-table a { color: var(--green-800); font-weight: 700; }
@@ -102,19 +124,25 @@
           <span class="access-step-num is-parking">P</span>
           <div>
             <h2>まず駐車場に停める</h2>
-            <p>黄色い看板の「オゾンクリーニング コインズ中野店」の隣にある、砂利の駐車場です。</p>
+            <p>黄色い看板の「オゾンクリーニング」のすぐ隣にある、砂利の駐車場です。地図と写真の<span class="c-blue">青いところ</span>に停めてください。入口は、歩道の白い柵と緑のフェンスの間です。</p>
           </div>
         </div>
+        <div class="access-step-arrow" aria-hidden="true">▼</div>
         <div class="access-step">
           <span class="access-step-num is-office"><svg viewBox="0 0 34 46" width="16" height="22" aria-hidden="true"><path d="M17 0C7.6 0 0 7.5 0 16.8 0 29.5 17 46 17 46s17-16.5 17-29.2C34 7.5 26.4 0 17 0z" fill="#fff"/><circle cx="17" cy="17" r="6" fill="#d93025"/></svg></span>
           <div>
             <h2>歩いて事務所へ（約2分）</h2>
-            <p>小さな川の橋を渡ってすぐ、ひの歯科クリニック隣の栄光ビル2階です。</p>
+            <p>駐車場の入口から歩道に出て<strong>右へ</strong>。道沿いに約150m進むと、ひの歯科クリニック隣の栄光ビルです（2階）。地図の<span class="c-red">赤い点線</span>のとおりです。</p>
           </div>
         </div>
       </div>
 
-      <div class="access-map" id="access-map" role="img" aria-label="駐車場と事務所の位置を示した地図"></div>
+      <div class="access-map" id="access-map" role="img" aria-label="駐車場（青）と、駐車場から事務所までの歩くルート（赤い点線）を示した地図"></div>
+      <div class="access-legend" aria-hidden="true">
+        <span><i class="lg-lot"></i>駐車場</span>
+        <span><i class="lg-walk"></i>歩くルート</span>
+        <span><i class="lg-shop"></i>オゾンクリーニング（目印）</span>
+      </div>
       <div class="access-map-links">
         <a href="https://www.google.com/maps/search/?api=1&amp;query=35.370050,132.764834" target="_blank" rel="noopener">駐車場をGoogleマップで見る</a>
         <a href="https://www.google.com/maps/search/?api=1&amp;query=%E3%80%92693-0012%20%E5%B3%B6%E6%A0%B9%E7%9C%8C%E5%87%BA%E9%9B%B2%E5%B8%82%E5%A4%A7%E6%B4%A5%E6%96%B0%E5%B4%8E%E7%94%BA%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%94%EF%BC%96%E2%88%92%EF%BC%92%20%E6%A0%84%E5%85%89%E3%83%93%E3%83%AB%202F" target="_blank" rel="noopener">事務所をGoogleマップで見る</a>
@@ -125,15 +153,21 @@
       </div>
 
       <h2 class="access-h">駐車場</h2>
-      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）の隣にある、砂利の駐車場の空いているところに停めてください。入口は、歩道の白い柵と緑のフェンスの間です。駐車場から事務所までは、小さな川にかかる橋を渡って歩いてすぐです。</p>
+      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）のすぐ隣にある、砂利の駐車場です。写真の<span class="c-blue">青いところ</span>の、空いている場所に停めてください。入口は、歩道の白い柵と緑のフェンスの間です（写真の矢印）。</p>
       <div class="access-photos">
         <figure class="access-photo">
-          <a href="parking-1.jpg" target="_blank" rel="noopener"><img src="parking-1.jpg" alt="黄色い看板のオゾンクリーニングと、その隣の砂利の駐車場" loading="lazy" width="1200" height="900"></a>
-          <figcaption>黄色い看板のオゾンクリーニングの隣、砂利の駐車場です。</figcaption>
+          <div class="access-photo-img">
+            <img src="parking-1.jpg" alt="歩道から見た駐車場。黄色い看板のオゾンクリーニングの隣の砂利の駐車場が青く塗られ、歩道から入口へ矢印が描かれている" loading="lazy" width="1200" height="900">
+            <svg class="photo-mark" viewBox="0 0 1200 900" preserveAspectRatio="none" aria-hidden="true"><polygon points="172,318 330,320 578,330 738,344 728,372 690,392 652,380 640,364 500,355 330,361 172,370" fill="#1a5fd0" fill-opacity=".45" stroke="#fff" stroke-width="10" stroke-linejoin="round"/><polygon points="172,318 330,320 578,330 738,344 728,372 690,392 652,380 640,364 500,355 330,361 172,370" fill="none" stroke="#1a5fd0" stroke-width="5" stroke-linejoin="round"/><path d="M1010 600 Q820 440 601 364" fill="none" stroke="#fff" stroke-width="32" stroke-linecap="round"/><polygon points="546,345 612,334 591,394" fill="#fff" stroke="#fff" stroke-width="12" stroke-linejoin="round"/><path d="M1010 600 Q820 440 601 364" fill="none" stroke="#1a5fd0" stroke-width="20" stroke-linecap="round"/><polygon points="546,345 612,334 591,394" fill="#1a5fd0" stroke="#1a5fd0" stroke-width="4" stroke-linejoin="round"/><rect x="235" y="230" width="250" height="64" rx="32" fill="#fff" stroke="#1a5fd0" stroke-width="5"/><text x="360" y="276" text-anchor="middle" font-size="40" font-weight="800" fill="#1a5fd0">ここに駐車</text><rect x="835" y="388" width="140" height="64" rx="32" fill="#fff" stroke="#1a5fd0" stroke-width="5"/><text x="905" y="434" text-anchor="middle" font-size="40" font-weight="800" fill="#1a5fd0">入口</text><rect x="482" y="73" width="360" height="64" rx="32" fill="#fff" stroke="#8a5a00" stroke-width="5"/><text x="662" y="119" text-anchor="middle" font-size="40" font-weight="800" fill="#8a5a00">目印：黄色い看板</text></svg>
+          </div>
+          <figcaption>歩道から見たところ。黄色い看板のお店の隣、青いところが駐車場です。矢印のように入ります。</figcaption>
         </figure>
         <figure class="access-photo">
-          <a href="parking-2.jpg" target="_blank" rel="noopener"><img src="parking-2.jpg" alt="歩道から見た駐車場の入口。白い柵と緑のフェンスの間から入る" loading="lazy" width="1200" height="900"></a>
-          <figcaption>入口は、歩道の白い柵と緑のフェンスの間です。</figcaption>
+          <div class="access-photo-img">
+            <img src="parking-2.jpg" alt="駐車場の入口。白い柵と緑のフェンスの間のコンクリート部分に矢印が描かれ、その奥の砂利の駐車場が青く塗られている" loading="lazy" width="1200" height="900">
+            <svg class="photo-mark" viewBox="0 0 1200 900" preserveAspectRatio="none" aria-hidden="true"><polygon points="588,370 590,284 650,284 720,272 940,270 1000,300 1000,338 900,342 780,350 660,368" fill="#1a5fd0" fill-opacity=".45" stroke="#fff" stroke-width="10" stroke-linejoin="round"/><polygon points="588,370 590,284 650,284 720,272 940,270 1000,300 1000,338 900,342 780,350 660,368" fill="none" stroke="#1a5fd0" stroke-width="5" stroke-linejoin="round"/><path d="M610 850 Q620 560 706 427" fill="none" stroke="#fff" stroke-width="32" stroke-linecap="round"/><polygon points="738,378 733,444 680,409" fill="#fff" stroke="#fff" stroke-width="12" stroke-linejoin="round"/><path d="M610 850 Q620 560 706 427" fill="none" stroke="#1a5fd0" stroke-width="20" stroke-linecap="round"/><polygon points="738,378 733,444 680,409" fill="#1a5fd0" stroke="#1a5fd0" stroke-width="4" stroke-linejoin="round"/><rect x="675" y="158" width="250" height="64" rx="32" fill="#fff" stroke="#1a5fd0" stroke-width="5"/><text x="800" y="204" text-anchor="middle" font-size="40" font-weight="800" fill="#1a5fd0">ここに駐車</text><rect x="360" y="608" width="140" height="64" rx="32" fill="#fff" stroke="#1a5fd0" stroke-width="5"/><text x="430" y="654" text-anchor="middle" font-size="40" font-weight="800" fill="#1a5fd0">入口</text></svg>
+          </div>
+          <figcaption>入口です。白い柵と緑のフェンスの間から入り、奥の青いところに停めてください。</figcaption>
         </figure>
       </div>
 
@@ -176,50 +210,85 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 (function () {
-  var PARKING = [35.370050, 132.764834];
+  var BLUE = '#1a5fd0', RED = '#d93025';
+  // 駐車場の範囲は、石田さんが航空写真に描いた三角形の土地（クリーニング店の東隣・川沿い）。
+  // 下地の地理院地図に描かれたお店の建物と川の線に合わせてある
+  var LOT = [[35.3701406, 132.7646828], [35.3701406, 132.7647293], [35.36997, 132.7650154], [35.3699671, 132.7646828]];
+  var LOT_CENTER = [35.370030, 132.764770];
+  var SHOP = [[35.3700896, 132.7645361], [35.3700896, 132.7646846], [35.3699744, 132.7646846], [35.3699744, 132.7645361]];
+  var ENTRANCE = [35.3701377, 132.7647078];
+  var CAR_FROM = [35.3702330, 132.7647078];
   var OFFICE = [35.369813, 132.7662898];
+  // 入口から歩道を東へ歩き、事務所まで
+  var WALK = [ENTRANCE, [35.3701362, 132.7647471], [35.3700925, 132.7651048], [35.3700473, 132.7654624],
+              [35.3700094, 132.76582], [35.3699744, 132.7661777], OFFICE];
 
   var map = L.map('access-map', {
     // スマホでは1本指のドラッグをページのスクロールに残す（地図は2本指で操作）
     dragging: !L.Browser.mobile,
     tap: false,
     scrollWheelZoom: false,
-    zoomSnap: 1,
+    zoomSnap: 0.25,
     attributionControl: false
   });
 
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+  // 地理院の淡色地図：駐車場わきの小さな川が青い線で描かれ、OSMのように南の別の駐車場に「P」が出ない
+  L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', { maxNativeZoom: 18, maxZoom: 19 }).addTo(map);
   L.control.attribution({ prefix: false, position: 'bottomright' })
-    .addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>')
+    .addAttribution('出典：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>')
     .addTo(map);
 
-  function pin(color, glyph) {
-    return '<svg viewBox="0 0 34 46" width="34" height="46">' +
-      '<path d="M17 0C7.6 0 0 7.5 0 16.8 0 29.5 17 46 17 46s17-16.5 17-29.2C34 7.5 26.4 0 17 0z" fill="' + color + '"/>' +
-      (glyph ? '<text x="17" y="22.5" text-anchor="middle" font-size="17" font-weight="800" fill="#fff" font-family="sans-serif">' + glyph + '</text>'
-             : '<circle cx="17" cy="17" r="6.5" fill="#fff"/>') + '</svg>';
+  function icon(html, size, anchor) {
+    return L.divIcon({ className: '', iconSize: size, iconAnchor: anchor, html: html });
   }
-  function marker(latlng, cls, color, glyph, label) {
-    return L.marker(latlng, {
-      keyboard: false,
-      icon: L.divIcon({
-        className: '',
-        iconSize: [34, 46],
-        iconAnchor: [17, 46],
-        html: '<div class="mk ' + cls + '"><span class="mk-label">' + label + '</span>' + pin(color, glyph) + '</div>'
-      })
-    }).addTo(map);
+  function put(latlng, ic) {
+    return L.marker(latlng, { icon: ic, keyboard: false, interactive: false }).addTo(map);
   }
-  marker(PARKING, 'mk-parking', '#1a5fd0', 'P', '駐車場（まずここへ）');
-  marker(OFFICE, 'mk-office', '#d93025', '', '事務所（栄光ビル2階）');
+
+  L.polygon(SHOP, { color: '#8a5a00', weight: 2, fillColor: '#f6c400', fillOpacity: 0.9, interactive: false }).addTo(map);
+  L.polygon(LOT, { color: '#fff', weight: 6, fill: false, interactive: false }).addTo(map);
+  L.polygon(LOT, { color: BLUE, weight: 3, fillColor: BLUE, fillOpacity: 0.45, interactive: false }).addTo(map);
+
+  // 線は白いふちを下に敷いてから色の線を重ね、地図の上でも埋もれないようにする
+  L.polyline([CAR_FROM, ENTRANCE], { color: '#fff', weight: 10, lineCap: 'round', interactive: false }).addTo(map);
+  L.polyline([CAR_FROM, ENTRANCE], { color: BLUE, weight: 5, lineCap: 'round', interactive: false }).addTo(map);
+  L.polyline(WALK, { color: '#fff', weight: 9, lineCap: 'round', lineJoin: 'round', interactive: false }).addTo(map);
+  L.polyline(WALK, { color: RED, weight: 4, dashArray: '8 7', lineCap: 'butt', lineJoin: 'round', interactive: false }).addTo(map);
+
+  var heads = [];
+  function head(at, from, color) {
+    heads.push({ at: at, from: from, color: color });
+  }
+  head(ENTRANCE, CAR_FROM, BLUE);
+  for (var i = 1; i < 5; i++) {
+    var a = WALK[i], b = WALK[i + 1];
+    head([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], a, RED);
+  }
+
+  put(LOT_CENTER, icon('<div class="mk-p">P<span class="mk-label">駐車場（まずここへ）</span></div>', [22, 22], [11, 11]));
+  put(OFFICE, icon('<div class="mk mk-office"><span class="mk-label">事務所（栄光ビル2階）</span>' +
+    '<svg viewBox="0 0 34 46" width="34" height="46"><path d="M17 0C7.6 0 0 7.5 0 16.8 0 29.5 17 46 17 46s17-16.5 17-29.2C34 7.5 26.4 0 17 0z" fill="' + RED + '"/>' +
+    '<circle cx="17" cy="17" r="6.5" fill="#fff"/></svg></div>', [34, 46], [17, 46]));
+  put(CAR_FROM, icon('<span class="mk-chip is-blue" style="left:8px;top:-12px">入口</span>', [0, 0], [0, 0]));
+  put([35.3700700, 132.7654000], icon('<span class="mk-chip is-red" style="left:-40px;top:-34px">徒歩 約2分</span>', [0, 0], [0, 0]));
 
   function fit() {
-    // 駐車場のラベルはピンの上、事務所のラベルはピンの下に出るので、その分の余白を上下に取る
-    map.fitBounds(L.latLngBounds([PARKING, OFFICE]), {
-      paddingTopLeft: [30, 90], paddingBottomRight: [30, 90], maxZoom: 17
+    // 駐車場のラベルは駐車場の下、事務所のラベルはピンの下に出るので、下側の余白を広めに取る
+    map.fitBounds(L.latLngBounds(LOT.concat(SHOP, [OFFICE, CAR_FROM])), {
+      paddingTopLeft: [14, 50], paddingBottomRight: [22, 96], maxZoom: 19
     });
   }
   fit();
+
+  // 矢印の向きは画面上の角度で決める（メルカトル図法なので、ズームしても角度は変わらない）
+  heads.forEach(function (h) {
+    var p = map.latLngToLayerPoint(h.at), q = map.latLngToLayerPoint(h.from);
+    var deg = Math.atan2(p.y - q.y, p.x - q.x) * 180 / Math.PI;
+    put(h.at, icon('<div class="mk-head" style="transform:rotate(' + deg.toFixed(1) + 'deg)">' +
+      '<svg width="18" height="18" viewBox="-9 -9 18 18"><path d="M-6 -7 L8 0 L-6 7 Z" fill="' + h.color +
+      '" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>', [18, 18], [9, 9]));
+  });
+
   window.addEventListener('resize', function () { map.invalidateSize(); fit(); });
 })();
 </script>
