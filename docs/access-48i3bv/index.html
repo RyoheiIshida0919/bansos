@@ -14,13 +14,34 @@
   <style>
     .access-body { max-width: 760px; margin-inline: auto; }
     .access-map {
+      position: relative;
+      display: block;
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--border);
       aspect-ratio: 4 / 3;
       background: var(--bg-light);
     }
-    .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+    /* 地図は案内用の固定表示にし、タップでGoogleマップへ渡す（自前ピンと地図がずれないように） */
+    .access-map iframe { width: 100%; height: 100%; border: 0; display: block; pointer-events: none; }
+    .access-pin {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -100%);
+      display: flex; flex-direction: column; align-items: center;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.35));
+    }
+    .access-pin-label {
+      background: #fff; color: var(--text);
+      font-size: 13px; font-weight: 700; line-height: 1.3;
+      padding: 5px 10px; border-radius: 999px; margin-bottom: 4px;
+      white-space: nowrap;
+    }
+    .access-map-hint {
+      position: absolute; right: 10px; top: 10px;
+      background: rgba(255,255,255,.92); color: var(--green-800);
+      font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    }
     .access-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 56px; }
     .access-h { font-size: 20px; margin: 48px 0 16px; }
     .access-body p, .access-body li { color: var(--text-mid); }
@@ -61,9 +82,14 @@
   <div class="container">
     <div class="access-body">
 
-      <div class="access-map">
-        <iframe src="https://maps.google.com/maps?q=%E3%80%92693-0012%20%E5%B3%B6%E6%A0%B9%E7%9C%8C%E5%87%BA%E9%9B%B2%E5%B8%82%E5%A4%A7%E6%B4%A5%E6%96%B0%E5%B4%8E%E7%94%BA%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%94%EF%BC%96%E2%88%92%EF%BC%92%20%E6%A0%84%E5%85%89%E3%83%93%E3%83%AB%202F&amp;z=17&amp;hl=ja&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="バンソウズ合同会社 事務所の地図"></iframe>
-      </div>
+      <a class="access-map" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%80%92693-0012%20%E5%B3%B6%E6%A0%B9%E7%9C%8C%E5%87%BA%E9%9B%B2%E5%B8%82%E5%A4%A7%E6%B4%A5%E6%96%B0%E5%B4%8E%E7%94%BA%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%94%EF%BC%96%E2%88%92%EF%BC%92%20%E6%A0%84%E5%85%89%E3%83%93%E3%83%AB%202F" target="_blank" rel="noopener" aria-label="Googleマップで事務所の場所を開く">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1400!2d132.7662898!3d35.369813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1794541819532" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" title="バンソウズ合同会社 事務所の地図"></iframe>
+        <span class="access-pin" aria-hidden="true">
+          <span class="access-pin-label">バンソウズ（栄光ビル2階）</span>
+          <svg viewBox="0 0 24 36" width="34" height="51"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 36 12 36s12-15.2 12-24.1C24 5.3 18.6 0 12 0z" fill="#d93025"/><circle cx="12" cy="12" r="4.6" fill="#7a1410"/></svg>
+        </span>
+        <span class="access-map-hint">タップでGoogleマップを開く</span>
+      </a>
       <div class="access-actions">
         <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=35.3700187,132.7646291" target="_blank" rel="noopener">駐車場までルート案内</a>
         <a class="btn btn-outline" href="tel:08019352913">電話する</a>
