@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- URLを送った方だけに見せるページ。HPからはリンクせず、検索にも載せない -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>事務所へのアクセス｜バンソウズ合同会社</title>
+  <link rel="icon" href="/images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .access-body { max-width: 760px; margin-inline: auto; }
+    .access-map {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 4 / 3;
+      background: var(--bg-light);
+    }
+    .access-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .access-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 56px; }
+    .access-h { font-size: 20px; margin: 48px 0 16px; }
+    .access-body p, .access-body li { color: var(--text-mid); }
+    .access-list { list-style: disc; padding-left: 1.4em; display: grid; gap: 6px; }
+    .access-body .company-table a { color: var(--green-800); font-weight: 700; }
+    @media (max-width: 640px) {
+      .access-map { aspect-ratio: 1 / 1; }
+      .access-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="バンソウズ合同会社 トップへ">
+      <img src="/images/logo.png" alt="バンソウズ合同会社">
+    </a>
+  </div>
+</header>
+
+<main>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="page-hero-eyebrow">ACCESS</span>
+    <h1>事務所へのアクセス</h1>
+    <p class="page-hero-lead" style="margin-bottom:0">
+      ご来社いただく際の、場所・駐車場・行き方のご案内です。
+    </p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="access-body">
+
+      <div class="access-map">
+        <iframe src="https://maps.google.com/maps?q=35.4280324,132.8106125&amp;z=17&amp;hl=ja&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="バンソウズ合同会社 事務所の地図"></iframe>
+      </div>
+      <div class="access-actions">
+        <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=35.4280324,132.8106125" target="_blank" rel="noopener">Googleマップでルート案内</a>
+        <a class="btn btn-outline" href="tel:08019352913">電話する</a>
+      </div>
+
+      <h2 class="access-h">所在地</h2>
+      <table class="company-table">
+        <tr>
+          <th>会社名</th>
+          <td>バンソウズ合同会社</td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>〒691-0001<br>島根県出雲市平田町1708-1</td>
+        </tr>
+        <tr>
+          <th>電話</th>
+          <td><a href="tel:08019352913">080-1935-2913</a>（石田）</td>
+        </tr>
+      </table>
+
+      <h2 class="access-h">駐車場</h2>
+      <p id="parking">（駐車場の案内をここに記載）</p>
+
+      <h2 class="access-h">行き方</h2>
+      <ul class="access-list">
+        <li>お車の場合は、上の「Googleマップでルート案内」を押すと、今いる場所から事務所までの道順が表示されます。</li>
+        <li>カーナビには「島根県出雲市平田町1708-1」と入力してください。</li>
+        <li>近くの目印：ローソン 出雲国富店、ウェルネス 平田西店</li>
+        <li>道に迷われたときは、お気軽にお電話ください。</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="site-footer">
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 バンソウズ合同会社</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
