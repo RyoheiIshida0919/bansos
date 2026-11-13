@@ -24,6 +24,9 @@
     .access-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 56px; }
     .access-h { font-size: 20px; margin: 48px 0 16px; }
     .access-body p, .access-body li { color: var(--text-mid); }
+    .access-photo { margin-top: 16px; }
+    .access-photo img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+    .access-photo figcaption { font-size: 14px; color: var(--text-mid); margin-top: 8px; }
     .access-list { list-style: disc; padding-left: 1.4em; display: grid; gap: 6px; }
     .access-body .company-table a { color: var(--green-800); font-weight: 700; }
     @media (max-width: 640px) {
@@ -62,7 +65,7 @@
         <iframe src="https://maps.google.com/maps?q=%E3%80%92693-0012%20%E5%B3%B6%E6%A0%B9%E7%9C%8C%E5%87%BA%E9%9B%B2%E5%B8%82%E5%A4%A7%E6%B4%A5%E6%96%B0%E5%B4%8E%E7%94%BA%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%94%EF%BC%96%E2%88%92%EF%BC%92%20%E6%A0%84%E5%85%89%E3%83%93%E3%83%AB%202F&amp;z=17&amp;hl=ja&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="バンソウズ合同会社 事務所の地図"></iframe>
       </div>
       <div class="access-actions">
-        <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=35.369813,132.7662898" target="_blank" rel="noopener">Googleマップでルート案内</a>
+        <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=35.3700187,132.7646291" target="_blank" rel="noopener">駐車場までルート案内</a>
         <a class="btn btn-outline" href="tel:08019352913">電話する</a>
       </div>
 
@@ -83,12 +86,16 @@
       </table>
 
       <h2 class="access-h">駐車場</h2>
-      <p id="parking">（駐車場の案内をここに記載）</p>
+      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）の隣の駐車場に停めてください。駐車場から事務所までは、小さな川にかかる橋を渡って歩いてすぐです。</p>
+      <figure class="access-photo">
+        <img src="parking.jpg" alt="駐車場付近の様子。奥に黄色い看板のクリーニング店が見える" loading="lazy" width="1400" height="1050">
+        <figcaption>奥に見える黄色い看板がオゾンクリーニングです。その隣が駐車場です。</figcaption>
+      </figure>
 
       <h2 class="access-h">行き方</h2>
       <ul class="access-list">
-        <li>お車の場合は、上の「Googleマップでルート案内」を押すと、今いる場所から事務所までの道順が表示されます。</li>
-        <li>カーナビには「島根県出雲市大津新崎町1丁目46-2」と入力してください。</li>
+        <li>お車の場合は、上の「駐車場までルート案内」を押すと、今いる場所から駐車場までの道順が表示されます。</li>
+        <li>カーナビでは「オゾンクリーニング コインズ中野店」（出雲市大津新崎町1丁目38）を目的地にしてください。</li>
         <li>近くの目印：ひの歯科クリニックのすぐ隣の建物です（新内藤川のそば）。</li>
         <li>事務所は栄光ビルの2階です。</li>
         <li>道に迷われたときは、お気軽にお電話ください。</li>
