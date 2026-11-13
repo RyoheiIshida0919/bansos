@@ -59,14 +59,15 @@
     .access-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 56px; }
     .access-h { font-size: 20px; margin: 48px 0 16px; }
     .access-body p, .access-body li { color: var(--text-mid); }
-    .access-photo { margin-top: 16px; }
+    .access-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
     .access-photo img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
-    .access-photo figcaption { font-size: 14px; color: var(--text-mid); margin-top: 8px; }
+    .access-photo figcaption { font-size: 14px; line-height: 1.6; color: var(--text-mid); margin-top: 8px; }
     .access-list { list-style: disc; padding-left: 1.4em; display: grid; gap: 6px; }
     .access-body .company-table a { color: var(--green-800); font-weight: 700; }
     @media (max-width: 640px) {
       .access-map { aspect-ratio: 1 / 1; }
       .access-actions .btn { width: 100%; }
+      .access-photos { grid-template-columns: 1fr; gap: 20px; }
     }
   </style>
 </head>
@@ -101,7 +102,7 @@
           <span class="access-step-num is-parking">P</span>
           <div>
             <h2>まず駐車場に停める</h2>
-            <p>黄色い看板の「オゾンクリーニング コインズ中野店」のすぐ東隣、川沿いの駐車場です。</p>
+            <p>黄色い看板の「オゾンクリーニング コインズ中野店」の隣にある、砂利の駐車場です。</p>
           </div>
         </div>
         <div class="access-step">
@@ -124,11 +125,17 @@
       </div>
 
       <h2 class="access-h">駐車場</h2>
-      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）のすぐ東隣、川沿いの駐車場に停めてください。駐車場から事務所までは、小さな川にかかる橋を渡って歩いてすぐです。</p>
-      <figure class="access-photo">
-        <img src="parking.jpg" alt="駐車場付近の様子。奥に黄色い看板のクリーニング店が見える" loading="lazy" width="1400" height="1050">
-        <figcaption>奥に見える黄色い看板がオゾンクリーニングです。その隣が駐車場です。</figcaption>
-      </figure>
+      <p id="parking">「オゾンクリーニング コインズ中野店」（黄色い看板）の隣にある、砂利の駐車場の空いているところに停めてください。入口は、歩道の白い柵と緑のフェンスの間です。駐車場から事務所までは、小さな川にかかる橋を渡って歩いてすぐです。</p>
+      <div class="access-photos">
+        <figure class="access-photo">
+          <a href="parking-1.jpg" target="_blank" rel="noopener"><img src="parking-1.jpg" alt="黄色い看板のオゾンクリーニングと、その隣の砂利の駐車場" loading="lazy" width="1200" height="900"></a>
+          <figcaption>黄色い看板のオゾンクリーニングの隣、砂利の駐車場です。</figcaption>
+        </figure>
+        <figure class="access-photo">
+          <a href="parking-2.jpg" target="_blank" rel="noopener"><img src="parking-2.jpg" alt="歩道から見た駐車場の入口。白い柵と緑のフェンスの間から入る" loading="lazy" width="1200" height="900"></a>
+          <figcaption>入口は、歩道の白い柵と緑のフェンスの間です。</figcaption>
+        </figure>
+      </div>
 
       <h2 class="access-h">所在地</h2>
       <table class="company-table">
